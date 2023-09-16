@@ -9,6 +9,7 @@ function App() {
   return (
     <>
       <ToastContainer autoClose={1500} theme="colored" />
+      <h2>Hello</h2>
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
