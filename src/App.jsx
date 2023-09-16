@@ -12,10 +12,10 @@ function App() {
       <h2>Hello</h2>
       <Router>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/CarRent" element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path="/catalog" element={<CatalogPage />} />
-            <Route path="/favorite" element={<FavoritePage />} />
+            <Route path="catalog" element={<CatalogPage />} />
+            <Route path="favorite" element={<FavoritePage />} />
           </Route>
         </Routes>
       </Router>
