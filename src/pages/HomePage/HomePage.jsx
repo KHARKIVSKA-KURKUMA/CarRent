@@ -1,5 +1,12 @@
+import { Container } from "../../components/Header/Header.styled";
+import Hero from "../../components/Hero/Hero";
+
 const HomePage = () => {
-  return <div>Home</div>;
+  return (
+    <Container>
+      <Hero />
+    </Container>
+  );
 };
 
 export default HomePage;

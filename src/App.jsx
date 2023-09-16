@@ -3,17 +3,14 @@ import HomePage from "./pages/HomePage/HomePage";
 import CatalogPage from "./pages/CatalogPage/CatalogPage";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import { ToastContainer } from "react-toastify";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  BrowserRouter,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { GlobalStyle } from "./GlobalStyles";
 
 function App() {
   return (
     <>
       <ToastContainer autoClose={1500} theme="colored" />
+      <GlobalStyle />
       <BrowserRouter basename={import.meta.env.DEV ? "/" : "/CarRent/"}>
         <Routes>
           <Route path="/" element={<Layout />}>
