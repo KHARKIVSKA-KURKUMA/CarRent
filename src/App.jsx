@@ -6,10 +6,12 @@ import { ToastContainer } from "react-toastify";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
+  function NotFoundPage() {
+    return <h1>404 - Page Not Found</h1>;
+  }
   return (
     <>
       <ToastContainer autoClose={1500} theme="colored" />
-      <h2>Hello</h2>
       <Router>
         <Routes>
           <Route path="/CarRent" element={<Layout />}>
@@ -17,6 +19,7 @@ function App() {
             <Route path="catalog" element={<CatalogPage />} />
             <Route path="favorite" element={<FavoritePage />} />
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </>
