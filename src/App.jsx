@@ -21,7 +21,6 @@ function App() {
             <Route path="catalog" element={<CatalogPage />} />
             <Route path="favorite" element={<FavoritePage />} />
           </Route>
-          <Route path="catalog" element={<CatalogPage />} />
         </Routes>
       </BrowserRouter>
     </>
