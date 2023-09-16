@@ -3,25 +3,27 @@ import HomePage from "./pages/HomePage/HomePage";
 import CatalogPage from "./pages/CatalogPage/CatalogPage";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import { ToastContainer } from "react-toastify";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  BrowserRouter,
+} from "react-router-dom";
 
 function App() {
-  function NotFoundPage() {
-    return <h1>404 - Page Not Found</h1>;
-  }
   return (
     <>
       <ToastContainer autoClose={1500} theme="colored" />
-      <Router>
+      <BrowserRouter basename={import.meta.env.DEV ? "/" : "/CarRent/"}>
         <Routes>
-          <Route path="/CarRent" element={<Layout />}>
+          <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="catalog" element={<CatalogPage />} />
             <Route path="favorite" element={<FavoritePage />} />
           </Route>
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="catalog" element={<CatalogPage />} />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </>
   );
 }
