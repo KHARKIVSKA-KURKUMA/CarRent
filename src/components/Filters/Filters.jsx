@@ -10,7 +10,7 @@ import { FcSearch } from "react-icons/fc";
 
 const Filters = () => {
   const [brand, setBrand] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
 
   return (
     <Container>
