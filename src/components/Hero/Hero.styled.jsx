@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 50px 0;
 `;
 
 const TextContainer = styled.div`
@@ -15,14 +15,15 @@ const TextContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 30px;
+  font-size: 84px;
+  max-width: 650px;
   margin-bottom: 20px;
 `;
 
 const Paragraph = styled.p`
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 30px;
-  max-width: 400px;
+  max-width: 500px;
 `;
 const Content = styled(DialogContent)`
   margin-top: 20px;
@@ -49,7 +50,7 @@ const Content = styled(DialogContent)`
 `;
 
 const Button = styled(Link)`
-  background-color: #6e8ae7;
+  background-color: #2c59ec;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -64,11 +65,13 @@ const Button = styled(Link)`
 
 const LearnMoreButton = styled(Button)`
   background-color: transparent;
-  color: #6e8ae7;
+  color: #2c59ec;
 `;
 
 const ImageWrap = styled.div`
-  max-width: 450px;
+  /* max-width: 600px; */
+  position: absolute;
+  transform: translateX(600px);
 `;
 export {
   LearnMoreButton,

@@ -10,6 +10,7 @@ import {
   Content,
 } from "./Hero.styled";
 import Dialog from "@mui/material/Dialog";
+import Car from "../../img/car.png";
 
 import { useState } from "react";
 
@@ -39,7 +40,7 @@ const Hero = () => {
         </LearnMoreButton>
       </TextContainer>
       <ImageWrap>
-        <img src="./src/img/car.png" alt="Car" />
+        <img src={Car} alt="Car" />
       </ImageWrap>
       <Dialog
         open={open}

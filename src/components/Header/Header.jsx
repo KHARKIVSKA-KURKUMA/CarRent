@@ -6,6 +6,7 @@ import {
   Logo,
   LogoImgContainer,
 } from "./Header.styled";
+import Logotype from "../../img/rent.png";
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
       <HeaderContainer>
         <LogoContainer to="/">
           <LogoImgContainer>
-            <img src="./src/img/rent.png" alt="Logo" />
+            <img src={Logotype} alt="Logotype" />
           </LogoImgContainer>
           <Logo>DriveOn</Logo>
         </LogoContainer>

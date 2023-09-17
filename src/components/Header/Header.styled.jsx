@@ -10,7 +10,7 @@ const HeaderContainer = styled.div`
 `;
 const Container = styled.div`
   background-color: #f2f2f2;
-  padding: 0px 80px;
+  padding: 0px 180px;
 `;
 const LogoContainer = styled(Link)`
   display: flex;
@@ -22,7 +22,7 @@ const LogoImgContainer = styled.div`
   max-width: 60px;
 `;
 const StyledBtn = styled.button`
-  background-color: #6e8ae7;
+  background-color: #2c59ec;
   border: none;
   border-radius: 20px;
   padding: 10px 20px;
