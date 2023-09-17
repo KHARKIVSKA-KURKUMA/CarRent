@@ -15,19 +15,22 @@ const TextContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 84px;
+  font-size: 82px;
   max-width: 650px;
   margin-bottom: 20px;
+  font-family: "Black Ops One", cursive;
 `;
 
 const Paragraph = styled.p`
   font-size: 20px;
   margin-bottom: 30px;
   max-width: 500px;
+  font-family: "Raleway", sans-serif;
 `;
 const Content = styled(DialogContent)`
   margin-top: 20px;
-  color: rgba(0, 0, 0, 0.6);
+  color: #464646;
+  font-family: "Raleway", sans-serif;
   h2 {
     font-size: 20px;
     margin-top: 20px;
@@ -53,11 +56,11 @@ const Button = styled(Link)`
   background-color: #2c59ec;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 15px 30px;
+  font-size: 18px;
   cursor: pointer;
   margin-right: 10px;
-  border-radius: 10px;
+  border-radius: 20px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -69,7 +72,6 @@ const LearnMoreButton = styled(Button)`
 `;
 
 const ImageWrap = styled.div`
-  /* max-width: 600px; */
   position: absolute;
   transform: translateX(600px);
 `;

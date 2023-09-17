@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
 
 /* ---------------------------------- reset --------------------------------- */
   body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Roboto', serif;
   margin: 0;
 }
 

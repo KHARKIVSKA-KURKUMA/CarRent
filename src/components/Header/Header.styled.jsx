@@ -30,8 +30,9 @@ const StyledBtn = styled.button`
   color: #fff;
 `;
 const Logo = styled.p`
-  font-family: "Fuggles", cursive;
-  font-size: 40px;
+  font-family: "Caveat", cursive;
+  font-size: 36px;
+  font-weight: 700;
 `;
 export {
   Container,
