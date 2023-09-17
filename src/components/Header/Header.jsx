@@ -5,6 +5,10 @@ import {
   StyledBtn,
   Logo,
   LogoImgContainer,
+  NavContainer,
+  SNavLink,
+  Catalog,
+  Favorite,
 } from "./Header.styled";
 import Logotype from "../../img/rent.png";
 import { useLocation } from "react-router-dom";
@@ -24,7 +28,7 @@ const Header = () => {
     document.body.style.overflow = "hidden";
   };
   return (
-    <Container>
+    <Container path={pathname}>
       <HeaderContainer>
         <LogoContainer to="/">
           <LogoImgContainer>
@@ -37,7 +41,16 @@ const Header = () => {
             Contact Us
           </StyledBtn>
         ) : (
-          <div>Not Home</div>
+          <NavContainer>
+            <SNavLink to={"/catalog"}>
+              <Catalog />
+              Catalog
+            </SNavLink>
+            <SNavLink to={"/favorite"}>
+              <Favorite />
+              Favorite
+            </SNavLink>
+          </NavContainer>
         )}
       </HeaderContainer>
       {isOpen && <ContactForm handleClose={handleClose} />}
