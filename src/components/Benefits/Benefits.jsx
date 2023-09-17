@@ -11,7 +11,7 @@ import {
 import { SiBugatti, SiLamborghini, SiTesla, SiToyota } from "react-icons/si";
 import { BsArrowUpRight } from "react-icons/bs";
 import { useState } from "react";
-import { SelectedCar } from "./cars";
+import { SelectedCar, SelectedCarHash } from "./cars";
 import { FaDollarSign } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
 
@@ -81,7 +81,7 @@ const Benefits = () => {
       </div>
       <ChosenCarWrap>
         <div>
-          <p>#{chosenCar.id}</p>
+          <p>#{SelectedCarHash(chosenCar.id)}</p>
           <SLink to={"/catalog"}>
             <BsArrowUpRight size={25} color="#fff" />
           </SLink>
