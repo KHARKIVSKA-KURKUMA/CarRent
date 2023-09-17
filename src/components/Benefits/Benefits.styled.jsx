@@ -96,7 +96,6 @@ const SLink = styled(Link)`
 const PriceBlockWrap = styled.div`
   padding: 0 20px;
   width: 300px;
-
   height: 300px;
   .title {
     color: black;
@@ -105,6 +104,7 @@ const PriceBlockWrap = styled.div`
     font-size: 20px;
     position: relative;
     margin-bottom: 20px;
+    font-family: "Raleway", sans-serif;
     &::after {
       content: "";
       background-color: #9c9b9b;
