@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Filters from "../../components/Filters/Filters";
 
 const Container = styled.div`
   background-color: #f2f2f2;
@@ -6,7 +7,11 @@ const Container = styled.div`
 `;
 
 const CatalogPage = () => {
-  return <Container>CatalogPage</Container>;
+  return (
+    <Container>
+      <Filters />
+    </Container>
+  );
 };
 
 export default CatalogPage;
