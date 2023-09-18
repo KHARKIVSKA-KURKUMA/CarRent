@@ -12,13 +12,20 @@ const CardList = styled.ul`
 const UnFav = styled(AiOutlineHeart)`
   position: absolute;
   right: 14px;
+  cursor: pointer;
   top: 14px;
   fill: #ffffff;
+  transition: fill 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    fill: #0b44cd;
+  }
 `;
 const Fav = styled(AiFillHeart)`
   position: absolute;
   right: 14px;
   top: 14px;
+  cursor: pointer;
   fill: #3470ff;
 `;
 const CarListItem = styled.li`
@@ -44,6 +51,11 @@ const CarListItem = styled.li`
     border-radius: 12px;
     cursor: pointer;
     width: 100%;
+    transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus {
+      background-color: #0b44cd;
+    }
   }
 `;
 const CardHead = styled.div`

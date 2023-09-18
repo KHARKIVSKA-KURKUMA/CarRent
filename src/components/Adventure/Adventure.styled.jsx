@@ -58,6 +58,11 @@ const ContentWrap = styled.div`
     display: inline-flex;
     align-items: center;
     gap: 4px;
+    transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus {
+      background-color: #0b44cd;
+    }
   }
   margin-bottom: 40px;
 `;

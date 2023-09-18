@@ -24,7 +24,6 @@ const BoxS = styled(Box)`
   position: relative;
 `;
 const Button = styled.button`
-  background-color: #2c59ec;
   color: #fff;
   border: none;
   padding: 15px 30px;
@@ -37,12 +36,11 @@ const Button = styled.button`
   gap: 4px;
   margin-left: 15px;
   transform: translateY(-10px);
+  background-color: #3470ff;
+  transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    background-color: #0b44cd;
+  }
 `;
-// const Container = styled.div``;
-// const Container = styled.div``;
-// const Container = styled.div``;
-// const Container = styled.div``;
-// const Container = styled.div``;
-// const Container = styled.div``;
-// const Container = styled.div``;
 export { Container, Label, BoxS, Button };

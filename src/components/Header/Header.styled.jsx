@@ -29,12 +29,18 @@ const LogoImgContainer = styled.div`
   max-width: 60px;
 `;
 const StyledBtn = styled.button`
-  background-color: #2c59ec;
+  cursor: pointer;
   border: none;
   border-radius: 20px;
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
+  background-color: #3470ff;
+  transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    background-color: #0b44cd;
+  }
 `;
 const Logo = styled.p`
   font-family: "Caveat", cursive;
@@ -51,13 +57,19 @@ const NavContainer = styled.div`
 `;
 const SNavLink = styled(NavLink)`
   color: #000;
+  svg {
+    transition: fill 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    path {
+      transition: stroke 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
   &.active {
     position: relative;
-    color: #2c59ec;
+    color: #0b44cd;
     svg {
-      fill: #2c59ec;
+      fill: #0b44cd;
       path {
-        stroke: #2c59ec;
+        stroke: #0b44cd;
       }
     }
     &::after {
@@ -65,10 +77,21 @@ const SNavLink = styled(NavLink)`
       width: 100%;
       height: 2px;
       position: absolute;
-      background-color: #2c59ec;
+      background-color: #0b44cd;
       bottom: 0;
       left: 0;
       transform: translateY(10px);
+    }
+  }
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: #0b44cd;
+    svg {
+      fill: #0b44cd;
+      path {
+        stroke: #0b44cd;
+      }
     }
   }
 `;

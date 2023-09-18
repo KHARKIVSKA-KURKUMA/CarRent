@@ -53,7 +53,6 @@ const Content = styled(DialogContent)`
 `;
 
 const Button = styled(Link)`
-  background-color: #2c59ec;
   color: #fff;
   border: none;
   padding: 15px 30px;
@@ -64,11 +63,23 @@ const Button = styled(Link)`
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  background-color: #3470ff;
+  transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    background-color: #0b44cd;
+  }
 `;
 
 const LearnMoreButton = styled(Button)`
   background-color: transparent;
-  color: #2c59ec;
+  color: #3470ff;
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: #0b44cd;
+  }
 `;
 
 const ImageWrap = styled.div`

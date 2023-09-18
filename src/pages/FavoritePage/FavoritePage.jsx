@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import CarList from "../../components/CarList/CarList";
 import { favoriteSelector } from "../../store/cars/carSelectors";
 import styled from "styled-components";
+import EmptyFavorites from "../../components/Favorites/EmptyFavorites";
 
 const Container = styled.div`
   background-color: #f2f2f2;
@@ -10,9 +11,10 @@ const Container = styled.div`
 
 const FavoritePage = () => {
   const cars = useSelector(favoriteSelector);
+
   return (
     <Container>
-      <CarList cars={cars} />
+      {cars.length > 0 ? <CarList cars={cars} /> : <EmptyFavorites />}
     </Container>
   );
 };

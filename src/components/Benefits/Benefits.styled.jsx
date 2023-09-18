@@ -72,9 +72,17 @@ const StyledUl = styled.ul`
     padding: 15px 30px;
     display: flex;
     font-size: 18px;
+    cursor: pointer;
     gap: 10px;
     &.selected {
-      background-color: #2c59ec;
+      background-color: #0b44cd;
+      color: #fff;
+    }
+    transition: background-color 400ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus {
+      background-color: #0b44cd;
       color: #fff;
     }
   }
@@ -118,8 +126,8 @@ const PriceBlockWrap = styled.div`
 `;
 const Box = styled.div`
   padding: 20px;
-  box-shadow: 10px 10px #2c59ec;
-  background-color: rgba(44, 89, 236, 0.8);
+  box-shadow: 10px 10px #0b44cd;
+  background-color: #3470ff;
   border-radius: 10px;
   color: #fff;
   .feedback {
