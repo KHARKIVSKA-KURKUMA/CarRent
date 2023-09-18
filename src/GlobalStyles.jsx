@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
 
 /* ---------------------------------- reset --------------------------------- */
   body {
-  font-family: 'Roboto', serif;
+    font-family: 'Manrope', sans-serif;
   margin: 0;
 }
 

@@ -45,7 +45,7 @@ const Logo = styled.p`
 const NavContainer = styled.div`
   display: flex;
   gap: 15px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Caveat", cursive;
   font-size: 24px;
   text-transform: uppercase;
 `;
