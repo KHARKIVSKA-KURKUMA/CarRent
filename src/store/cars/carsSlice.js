@@ -1,5 +1,7 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
 import {
   handleFulfilled,
   handlePending,
@@ -10,6 +12,15 @@ import { getCarsThunk } from "./carsThunk";
 const carsSlice = createSlice({
   name: "cars",
   initialState,
+  reducers: {
+    addFavorite: (state, { payload }) => {
+      state.favoriteCars = [payload, ...state.favoriteCars];
+    },
+    removeFavorite: (state, { payload }) => {
+      const index = state.favoriteCars.findIndex((car) => car.id === payload);
+      state.favoriteCars.splice(index, 1);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCarsThunk.fulfilled, (state, { payload }) => {
@@ -21,4 +32,12 @@ const carsSlice = createSlice({
   },
 });
 
-export const carsReducer = carsSlice.reducer;
+const carsReducer = carsSlice.reducer;
+const persistConfig = {
+  key: "favorite",
+  storage,
+  whitelist: ["favoriteCars"],
+};
+
+export const { addFavorite, removeFavorite } = carsSlice.actions;
+export const persistedCarReducer = persistReducer(persistConfig, carsReducer);

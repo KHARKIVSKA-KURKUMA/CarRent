@@ -1,3 +1,4 @@
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import styled from "styled-components";
 /* ---------------------------------- List ---------------------------------- */
 const CardList = styled.ul`
@@ -8,10 +9,23 @@ const CardList = styled.ul`
   justify-content: center;
 `;
 /* -------------------------------- Car Card -------------------------------- */
+const UnFav = styled(AiOutlineHeart)`
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  fill: #ffffff;
+`;
+const Fav = styled(AiFillHeart)`
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  fill: #3470ff;
+`;
 const CarListItem = styled.li`
   display: flex;
   max-width: 274px;
   align-items: center;
+  position: relative;
   margin-bottom: 10px;
   border-radius: 12px;
   flex-direction: column;
@@ -90,4 +104,4 @@ const SList = styled.ul`
     }
   }
 `;
-export { CarListItem, CardHead, DescBox, SList, CardList };
+export { CarListItem, CardHead, DescBox, SList, CardList, UnFav, Fav };
