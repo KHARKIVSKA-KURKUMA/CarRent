@@ -12,15 +12,15 @@ const CarCard = ({ data }) => {
     rentalPrice,
     rentalCompany,
     id,
+    photoLink,
     functionalities,
     address,
   } = data;
-
   const { city, country } = createAddressObject(address);
 
   return (
     <CarListItem>
-      <img src={img} alt={make} />
+      {img ? <img src={img} alt={make} /> : <img src={photoLink} alt={make} />}
       <DescBox>
         <CardHead>
           <div>
@@ -31,7 +31,6 @@ const CarCard = ({ data }) => {
           </div>
           <p>{rentalPrice}</p>
         </CardHead>
-
         <SList>
           <li>{city}</li>
           <li>{country}</li>
@@ -50,6 +49,7 @@ const CarCard = ({ data }) => {
 CarCard.propTypes = {
   data: PropTypes.shape({
     img: PropTypes.string,
+    photoLink: PropTypes.string,
     type: PropTypes.string,
     make: PropTypes.string,
     model: PropTypes.string,

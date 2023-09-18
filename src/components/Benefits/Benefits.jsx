@@ -20,13 +20,20 @@ const Benefits = () => {
     id: "toyota",
     value: "Toyota Supra",
   });
-
   const [selectedCarId, setSelectedCarId] = useState("toyota");
   const handleClick = (e) => {
-    const id = e.target.id;
-    const value = e.target.innerText;
-    setChosenCar({ id, value });
-    setSelectedCarId(id);
+    if (e.target.tagName === "svg" || e.target.tagName === "path") {
+      const button = e.target.closest("li").querySelector("button");
+      const id = button.id;
+      const value = button.innerText;
+      setChosenCar({ id, value });
+      setSelectedCarId(id);
+    } else {
+      const id = e.target.id;
+      const value = e.target.innerText;
+      setChosenCar({ id, value });
+      setSelectedCarId(id);
+    }
   };
 
   return (
@@ -40,7 +47,7 @@ const Benefits = () => {
               onClick={handleClick}
               className={selectedCarId === "toyota" ? "selected" : ""}
             >
-              <SiToyota size={20} />
+              <SiToyota size={20} id="toyota" />
               Toyota Supra
             </button>
           </li>
@@ -51,7 +58,7 @@ const Benefits = () => {
               onClick={handleClick}
               className={selectedCarId === "bugatti" ? "selected" : ""}
             >
-              <SiBugatti size={20} />
+              <SiBugatti size={20} id="bugatti" />
               Bugatti Chiron
             </button>
           </li>
@@ -62,7 +69,7 @@ const Benefits = () => {
               onClick={handleClick}
               className={selectedCarId === "lamborghini" ? "selected" : ""}
             >
-              <SiLamborghini size={20} />
+              <SiLamborghini size={20} id="lamborghini" />
               Lamborghini Veneno Roadster
             </button>
           </li>
@@ -73,7 +80,7 @@ const Benefits = () => {
               onClick={handleClick}
               className={selectedCarId === "tesla" ? "selected" : ""}
             >
-              <SiTesla size={20} />
+              <SiTesla size={20} id="tesla" />
               Tesla Roadster
             </button>
           </li>
