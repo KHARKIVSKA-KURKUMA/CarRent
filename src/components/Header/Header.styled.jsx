@@ -52,8 +52,7 @@ const NavContainer = styled.div`
   display: flex;
   gap: 15px;
   font-family: "Caveat", cursive;
-  font-size: 24px;
-  text-transform: uppercase;
+  font-size: 28px;
 `;
 const SNavLink = styled(NavLink)`
   color: #000;

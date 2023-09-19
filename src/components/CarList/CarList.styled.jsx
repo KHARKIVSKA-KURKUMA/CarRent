@@ -5,6 +5,12 @@ const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   column-gap: 29px;
+  ${(props) =>
+    props.path === "/favorite" &&
+    `
+    padding: 60px 0 ;
+
+  `}
   row-gap: 50px;
   justify-content: center;
 `;

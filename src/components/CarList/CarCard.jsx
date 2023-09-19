@@ -31,12 +31,24 @@ const CarCard = ({ data }) => {
   const { city, country } = createAddressObject(address);
   const dispatch = useDispatch();
   const handleClick = (e) => {
-    if (e.target.id === "unFav") {
-      setIsFavorite(true);
-      dispatch(addFavorite(data));
+    if (e.target.tagName === "path") {
+      const icon = e.target.closest("svg");
+      const id = icon.id;
+      if (id === "unFav") {
+        setIsFavorite(true);
+        dispatch(addFavorite(data));
+      } else {
+        setIsFavorite(false);
+        dispatch(removeFavorite(data.id));
+      }
     } else {
-      setIsFavorite(false);
-      dispatch(removeFavorite(data.id));
+      if (e.target.id === "unFav") {
+        setIsFavorite(true);
+        dispatch(addFavorite(data));
+      } else {
+        setIsFavorite(false);
+        dispatch(removeFavorite(data.id));
+      }
     }
   };
   const favorite = useSelector(favoriteSelector);

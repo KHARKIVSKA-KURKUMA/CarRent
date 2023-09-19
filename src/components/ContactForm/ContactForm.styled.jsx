@@ -34,10 +34,15 @@ const Form = styled.form`
 
 const Button = styled.button`
   padding: 10px 20px;
-  background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 20px;
   cursor: pointer;
+  background-color: #3470ff;
+  transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    background-color: #0b44cd;
+  }
 `;
 export { Button, Container, Form, Close };

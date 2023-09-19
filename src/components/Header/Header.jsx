@@ -45,11 +45,11 @@ const Header = () => {
           ) : (
             <NavContainer>
               <SNavLink to={"/catalog"}>
-                <Catalog />
+                <Catalog size={24} />
                 Catalog
               </SNavLink>
               <SNavLink to={"/favorite"}>
-                <Favorite />
+                <Favorite size={24} />
                 Favorite
               </SNavLink>
             </NavContainer>
