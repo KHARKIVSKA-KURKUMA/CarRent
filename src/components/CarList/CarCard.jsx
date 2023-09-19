@@ -17,6 +17,7 @@ import DetailCar from "./DetailCar/DetailCar";
 const CarCard = ({ data }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
   const {
     img,
     type,
@@ -53,6 +54,7 @@ const CarCard = ({ data }) => {
       }
     }
   };
+
   const favorite = useSelector(favoriteSelector);
   useEffect(() => {
     const isFavorite = favorite.some((fav) => fav.id === data.id);
@@ -61,7 +63,7 @@ const CarCard = ({ data }) => {
   const handleClose = () => setIsOpen(false);
   return (
     <>
-      <CarListItem>
+      <CarListItem onClick={() => setIsOpen(true)}>
         {!isFavorite ? (
           <UnFav id="unFav" size={18} onClick={handleClick} />
         ) : (
@@ -91,10 +93,10 @@ const CarCard = ({ data }) => {
             <li>{id}</li>
             <li>{reduceFunctionalitiesArr(functionalities)}</li>
           </SList>
-          <button type="button" onClick={() => setIsOpen(true)}>
-            Learn more
-          </button>
         </DescBox>
+        <button type="button" onClick={() => setIsOpen(true)}>
+          Learn more
+        </button>
       </CarListItem>
       {isOpen && <DetailCar data={data} handleClose={handleClose} />}
     </>

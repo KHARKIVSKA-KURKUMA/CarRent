@@ -36,12 +36,20 @@ const Fav = styled(AiFillHeart)`
 `;
 const CarListItem = styled.li`
   display: flex;
-  max-width: 274px;
+  max-width: 284px;
   align-items: center;
   position: relative;
   margin-bottom: 10px;
   border-radius: 12px;
   flex-direction: column;
+  cursor: pointer;
+  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
   img {
     height: 268px;
     border-radius: 12px;
@@ -94,7 +102,7 @@ const CardHead = styled.div`
 `;
 const DescBox = styled.div`
   width: 100%;
-  padding-top: 14px;
+  padding: 14px 5px 0 5px;
 `;
 const SList = styled.ul`
   display: flex;

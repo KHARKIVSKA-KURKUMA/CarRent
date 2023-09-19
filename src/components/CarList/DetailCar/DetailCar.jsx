@@ -12,10 +12,14 @@ import {
   Container,
   CardContainer,
   Description,
+  RentalButton,
 } from "./DetailCar.styled";
 import { SList } from "../CarList.styled";
+import { useEffect, useRef } from "react";
 
 const DetailCar = ({ data, handleClose }) => {
+  const phoneNumber = "+380730000000";
+  const containerRef = useRef(null);
   const {
     img,
     type,
@@ -34,6 +38,37 @@ const DetailCar = ({ data, handleClose }) => {
     description,
     mileage,
   } = data;
+  /* -------------------------------------------------------------------------- */
+  useEffect(() => {
+    const handleCloseOnBackdropClick = (e) => {
+      if (containerRef.current && e.target === containerRef.current) {
+        handleClose();
+      }
+    };
+
+    const handleEscapeKeyPress = (e) => {
+      if (e.key === "Escape") {
+        handleClose();
+      }
+    };
+    if (containerRef.current) {
+      containerRef.current.addEventListener(
+        "click",
+        handleCloseOnBackdropClick
+      );
+      document.addEventListener("keydown", handleEscapeKeyPress);
+    }
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.removeEventListener(
+          "click",
+          handleCloseOnBackdropClick
+        );
+      }
+      document.removeEventListener("keydown", handleEscapeKeyPress);
+    };
+  }, [handleClose]);
+  /* -------------------------------------------------------------------------- */
 
   const accessoriesAndFunctionalitiesArr = accessoriesAndFunctionalities(
     functionalities,
@@ -48,7 +83,7 @@ const DetailCar = ({ data, handleClose }) => {
 
   const { city, country } = createAddressObject(address);
   return (
-    <Container>
+    <Container ref={containerRef}>
       <CardContainer>
         <Close size={24} onClick={handleClose} />
         {img ? (
@@ -105,6 +140,7 @@ const DetailCar = ({ data, handleClose }) => {
             })}
           </ConditionList>
         </div>
+        <RentalButton href={`tel:${phoneNumber}`}>Rental car</RentalButton>
       </CardContainer>
     </Container>
   );

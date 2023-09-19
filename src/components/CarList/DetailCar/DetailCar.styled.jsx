@@ -25,6 +25,7 @@ const CategoryTitle = styled.p`
 const Close = styled(MdOutlineCancel)`
   position: absolute;
   top: 16px;
+  cursor: pointer;
   right: 16px;
 `;
 const Description = styled.p`
@@ -40,6 +41,7 @@ const CardContainer = styled.div`
   img {
     width: 100%;
     border-radius: 16px;
+    max-height: 250px;
   }
 `;
 const Container = styled.div`
@@ -68,6 +70,22 @@ const CardHead = styled.div`
     margin-left: 3px;
   }
 `;
+
+const RentalButton = styled.a`
+  padding: 13px 50px;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #3470ff;
+  margin-top: 24px;
+  display: inline-block;
+  transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    background-color: #0b44cd;
+  }
+`;
 export {
   ConditionList,
   CategoryTitle,
@@ -76,4 +94,5 @@ export {
   Container,
   CardContainer,
   Description,
+  RentalButton,
 };
