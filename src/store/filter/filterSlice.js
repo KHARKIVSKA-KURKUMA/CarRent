@@ -1,14 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "./initialState";
 
 const filterSlice = createSlice({
   name: "filter",
-  initialState: {
-    brand: "",
-    price: "",
-    styledPrice: "To $",
-    from: "",
-    to: "",
-  },
+  initialState,
   reducers: {
     setBrand: (state, { payload }) => {
       state.brand = payload;
