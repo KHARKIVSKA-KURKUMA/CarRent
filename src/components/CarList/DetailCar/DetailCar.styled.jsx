@@ -32,7 +32,7 @@ const Description = styled.p`
   font-family: "Raleway", sans-serif;
 `;
 const CardContainer = styled.div`
-  width: 540px;
+  max-width: 540px;
   height: auto;
   position: relative;
   background-color: white;

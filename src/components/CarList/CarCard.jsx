@@ -63,18 +63,18 @@ const CarCard = ({ data }) => {
   const handleClose = () => setIsOpen(false);
   return (
     <>
-      <CarListItem onClick={() => setIsOpen(true)}>
+      <CarListItem>
         {!isFavorite ? (
           <UnFav id="unFav" size={18} onClick={handleClick} />
         ) : (
           <Fav id="fav" size={18} onClick={handleClick} />
         )}
         {img ? (
-          <img src={img} alt={make} />
+          <img onClick={() => setIsOpen(true)} src={img} alt={make} />
         ) : (
-          <img src={photoLink} alt={make} />
+          <img onClick={() => setIsOpen(true)} src={photoLink} alt={make} />
         )}
-        <DescBox>
+        <DescBox onClick={() => setIsOpen(true)}>
           <CardHead>
             <div>
               <p className="make">{make}</p>
