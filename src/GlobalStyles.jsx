@@ -43,5 +43,10 @@ img {
   max-width: 100%;
   height: auto;
 }
-  
+  .isHidden{
+    display: none;
+    &:last-of-type{
+      display: inline-block
+    }
+  }
 `;
