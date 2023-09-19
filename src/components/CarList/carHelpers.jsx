@@ -34,7 +34,8 @@ export const rentalConditionsArr = (rentalConditions, rentalPrice, mileage) => {
   if (typeof rentalConditions !== "string") {
     return [];
   }
-
+  const priceArr = rentalPrice.split("$");
+  const price = priceArr[1] + "$";
   const conditionsArray = rentalConditions.split("\n");
   const res = conditionsArray.map((condition) => {
     const [key, value] = condition.split(": ");
@@ -64,7 +65,7 @@ export const rentalConditionsArr = (rentalConditions, rentalPrice, mileage) => {
   res.push(
     <>
       <span className="condition-key">Price</span>:{" "}
-      <span className="condition-value">{rentalPrice}</span>
+      <span className="condition-value">{price}</span>
     </>
   );
   return res;
