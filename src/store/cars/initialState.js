@@ -4,5 +4,6 @@ export const initialState = {
   error: "",
   favoriteCars: [],
   filteredCars: [],
+  currentItems: 8,
   isFiltered: false,
 };

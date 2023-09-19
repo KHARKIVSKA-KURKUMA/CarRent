@@ -1,6 +1,21 @@
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import styled from "styled-components";
 /* ---------------------------------- List ---------------------------------- */
+const Button = styled.button`
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 60px auto;
+  width: 100%;
+  text-decoration: underline;
+  color: #3470ff;
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: #0b44cd;
+  }
+`;
 const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -9,7 +24,6 @@ const CardList = styled.ul`
     props.path === "/favorite" &&
     `
     padding: 60px 0 ;
-
   `}
   row-gap: 50px;
   justify-content: center;
@@ -133,4 +147,4 @@ const SList = styled.ul`
     }
   }
 `;
-export { CarListItem, CardHead, DescBox, SList, CardList, UnFav, Fav };
+export { CarListItem, CardHead, DescBox, SList, CardList, UnFav, Fav, Button };

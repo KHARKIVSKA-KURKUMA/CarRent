@@ -45,11 +45,15 @@ const carsSlice = createSlice({
     resetArr: (state) => {
       state.isFiltered = false;
     },
+    changePage: (state, { payload }) => {
+      state.currentItems += 8;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getCarsThunk.fulfilled, (state, { payload }) => {
         state.cars = payload;
+        state.currentPage = 1;
       })
       .addMatcher(isAnyOf(), getCarsThunk.pending, handlePending)
       .addMatcher(isAnyOf(), getCarsThunk.rejected, handleRejected)
@@ -64,7 +68,12 @@ const persistConfig = {
   whitelist: ["favoriteCars"],
 };
 
-export const { addFavorite, removeFavorite, changeFilteredCars, resetArr } =
-  carsSlice.actions;
+export const {
+  addFavorite,
+  removeFavorite,
+  changeFilteredCars,
+  resetArr,
+  changePage,
+} = carsSlice.actions;
 
 export const persistedCarReducer = persistReducer(persistConfig, carsReducer);
