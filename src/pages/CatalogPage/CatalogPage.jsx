@@ -4,7 +4,11 @@ import CarList from "../../components/CarList/CarList";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCarsThunk } from "../../store/cars/carsThunk";
-import { carSelector } from "../../store/cars/carSelectors";
+import {
+  carSelector,
+  filteredSelector,
+  isFilteredSelector,
+} from "../../store/cars/carSelectors";
 
 const Container = styled.div`
   background-color: #f2f2f2;
@@ -17,10 +21,12 @@ const CatalogPage = () => {
     dispatch(getCarsThunk());
   }, [dispatch]);
   const cars = useSelector(carSelector);
+  const filteredArr = useSelector(filteredSelector);
+  const isFiltered = useSelector(isFilteredSelector);
   return (
     <Container>
       <Filters />
-      <CarList cars={cars} />
+      {isFiltered ? <CarList cars={filteredArr} /> : <CarList cars={cars} />}
     </Container>
   );
 };

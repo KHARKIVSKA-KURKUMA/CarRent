@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import Box from "@mui/material/Box";
+import { GrPowerReset } from "react-icons/gr";
 
-const Container = styled.div`
-  padding: 30px 0;
+const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+const Container = styled.div`
+  padding: 30px 0;
+`;
+const Reset = styled(GrPowerReset)`
+  path {
+    stroke: #fff;
+  }
 `;
 const Label = styled.p`
   color: rgba(0, 0, 0, 0.6);
@@ -43,4 +51,4 @@ const Button = styled.button`
     background-color: #0b44cd;
   }
 `;
-export { Container, Label, BoxS, Button };
+export { Container, Label, BoxS, Button, Form, Reset };

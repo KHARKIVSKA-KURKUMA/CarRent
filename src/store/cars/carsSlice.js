@@ -20,6 +20,31 @@ const carsSlice = createSlice({
       const index = state.favoriteCars.findIndex((car) => car.id === payload);
       state.favoriteCars.splice(index, 1);
     },
+    changeFilteredCars: (state, { payload }) => {
+      const filteredCars = state.cars.filter((car) => {
+        const match = car.rentalPrice.match(/\$(\d+)/);
+        const price = parseInt(match[1], 10);
+        if (payload.brand && car.make !== payload.brand) {
+          return false;
+        }
+        if (payload.price && price > payload.price) {
+          return false;
+        }
+        if (
+          payload.mileage &&
+          (car.mileage < payload.mileage.from ||
+            car.mileage > payload.mileage.to)
+        ) {
+          return false;
+        }
+        return true;
+      });
+      state.filteredCars = filteredCars;
+      state.isFiltered = true;
+    },
+    resetArr: (state) => {
+      state.isFiltered = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -39,5 +64,6 @@ const persistConfig = {
   whitelist: ["favoriteCars"],
 };
 
-export const { addFavorite, removeFavorite } = carsSlice.actions;
+export const { addFavorite, removeFavorite, changeFilteredCars, resetArr } =
+  carsSlice.actions;
 export const persistedCarReducer = persistReducer(persistConfig, carsReducer);
