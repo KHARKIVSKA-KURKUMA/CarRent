@@ -66,4 +66,5 @@ const persistConfig = {
 
 export const { addFavorite, removeFavorite, changeFilteredCars, resetArr } =
   carsSlice.actions;
+
 export const persistedCarReducer = persistReducer(persistConfig, carsReducer);

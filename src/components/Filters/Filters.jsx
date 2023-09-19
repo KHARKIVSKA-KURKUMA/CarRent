@@ -4,29 +4,36 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
-import { useState } from "react";
 import { BoxS, Container, Label, Button, Form, Reset } from "./Filters.styled";
 import { FcSearch } from "react-icons/fc";
 import carBrands from "../../data/brands.json";
 import carPrices from "../../data/prices.json";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeFilteredCars, resetArr } from "../../store/cars/carsSlice";
 import { toast } from "react-toastify";
+import {
+  brandSelector,
+  fromSelector,
+  priceSelector,
+  styledPriceSelector,
+  toSelector,
+} from "../../store/filter/filterSelector";
+import {
+  resetFilter,
+  setBrand,
+  setFrom,
+  setPrice,
+  setStyledPrice,
+  setTo,
+} from "../../store/filter/filterSlice";
 
 const Filters = () => {
-  const [brand, setBrand] = useState("");
-  const [price, setPrice] = useState("");
-  const [styledPrice, setStyledPrice] = useState("To $");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const brand = useSelector(brandSelector);
+  const price = useSelector(priceSelector);
+  const styledPrice = useSelector(styledPriceSelector);
+  const from = useSelector(fromSelector);
+  const to = useSelector(toSelector);
   const dispatch = useDispatch();
-  const cleanFields = () => {
-    setBrand("");
-    setPrice("");
-    setStyledPrice("To $");
-    setFrom("");
-    setTo("");
-  };
 
   function format(value, category) {
     if (category === "to") {
@@ -47,19 +54,19 @@ const Filters = () => {
   const handleInputChange = (e) => {
     const inputValue = e.target.value.replace(/[^0-9]/g, "");
     if (e.target.id === "To") {
-      setTo(inputValue);
+      dispatch(setTo(inputValue));
     } else {
-      setFrom(inputValue);
+      dispatch(setFrom(inputValue));
     }
   };
   const handleSwitchChange = (e) => {
     const inputValue = e.target.value.replace(/[^0-9]/g, "");
-    setStyledPrice(`To $${inputValue}`);
-    setPrice(inputValue);
+    dispatch(setStyledPrice(`To $${inputValue}`));
+    dispatch(setPrice(inputValue));
   };
   const handleReset = () => {
     dispatch(resetArr());
-    cleanFields();
+    dispatch(resetFilter());
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,7 +103,7 @@ const Filters = () => {
             value={brand}
             name="brand"
             label="Car Brand"
-            onChange={(e) => setBrand(e.target.value)}
+            onChange={(e) => dispatch(setBrand(e.target.value))}
           >
             <MenuItem value="">
               <em>Chose Car Brand</em>

@@ -34,6 +34,7 @@ export const rentalConditionsArr = (rentalConditions, rentalPrice, mileage) => {
   if (typeof rentalConditions !== "string") {
     return [];
   }
+
   const conditionsArray = rentalConditions.split("\n");
   const res = conditionsArray.map((condition) => {
     const [key, value] = condition.split(": ");
@@ -55,7 +56,9 @@ export const rentalConditionsArr = (rentalConditions, rentalPrice, mileage) => {
   res.push(
     <>
       <span className="condition-key">Mileage</span>:{" "}
-      <span className="condition-value">{mileage}</span>
+      <span className="condition-value">
+        {new Intl.NumberFormat("en-US").format(mileage)}
+      </span>
     </>
   );
   res.push(

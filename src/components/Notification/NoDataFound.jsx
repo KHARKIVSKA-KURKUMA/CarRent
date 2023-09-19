@@ -2,6 +2,7 @@ import styled from "styled-components";
 import NoData from "../../img/no-data.png";
 import { useDispatch } from "react-redux";
 import { resetArr } from "../../store/cars/carsSlice";
+import { resetFilter } from "../../store/filter/filterSlice";
 
 const Container = styled.div`
   display: flex;
@@ -44,12 +45,16 @@ const SLink = styled.button`
 
 const NoDataFound = () => {
   const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(resetArr());
+    dispatch(resetFilter());
+  };
   return (
     <Container>
       <Image src={NoData} alt="No Data Poster" />
       <Heading>No Matching Cars Found</Heading>
       <Paragraph>We couldn't find any cars that match your filters.</Paragraph>
-      <SLink type="button" onClick={() => dispatch(resetArr())}>
+      <SLink type="button" onClick={handleClick}>
         Reset
       </SLink>
     </Container>

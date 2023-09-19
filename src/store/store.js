@@ -9,9 +9,11 @@ import {
   REGISTER,
 } from "redux-persist";
 import { persistedCarReducer } from "./cars/carsSlice";
+import { filterReducer } from "./filter/filterSlice";
 
 const reducer = {
   cars: persistedCarReducer,
+  filter: filterReducer,
 };
 
 export const store = configureStore({
