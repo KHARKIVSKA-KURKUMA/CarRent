@@ -106,6 +106,9 @@ const SList = styled.ul`
   li {
     position: relative;
     font-size: 12px;
+    span {
+      margin-right: 2px;
+    }
     &::after {
       content: "";
       height: 16px;

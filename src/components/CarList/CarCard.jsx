@@ -12,9 +12,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../../store/cars/carsSlice";
 import { favoriteSelector } from "../../store/cars/carSelectors";
+import DetailCar from "./DetailCar/DetailCar";
 
 const CarCard = ({ data }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const {
     img,
     type,
@@ -56,36 +58,46 @@ const CarCard = ({ data }) => {
     const isFavorite = favorite.some((fav) => fav.id === data.id);
     setIsFavorite(isFavorite);
   }, [favorite, data]);
+  const handleClose = () => setIsOpen(false);
   return (
-    <CarListItem>
-      {!isFavorite ? (
-        <UnFav id="unFav" size={18} onClick={handleClick} />
-      ) : (
-        <Fav id="fav" size={18} onClick={handleClick} />
-      )}
-      {img ? <img src={img} alt={make} /> : <img src={photoLink} alt={make} />}
-      <DescBox>
-        <CardHead>
-          <div>
-            <p className="make">{make}</p>
-            <p className="model"> {model && model}</p>
-            <p>,</p>
-            <p className="year">{year}</p>
-          </div>
-          <p>{rentalPrice}</p>
-        </CardHead>
-        <SList>
-          <li>{city}</li>
-          <li>{country}</li>
-          <li>{rentalCompany}</li>
-          <li>{type}</li>
-          <li>{model}</li>
-          <li>{id}</li>
-          <li>{reduceFunctionalitiesArr(functionalities)}</li>
-        </SList>
-        <button>Learn more</button>
-      </DescBox>
-    </CarListItem>
+    <>
+      <CarListItem>
+        {!isFavorite ? (
+          <UnFav id="unFav" size={18} onClick={handleClick} />
+        ) : (
+          <Fav id="fav" size={18} onClick={handleClick} />
+        )}
+        {img ? (
+          <img src={img} alt={make} />
+        ) : (
+          <img src={photoLink} alt={make} />
+        )}
+        <DescBox>
+          <CardHead>
+            <div>
+              <p className="make">{make}</p>
+              <p className="model"> {model && model}</p>
+              <p>,</p>
+              <p className="year">{year}</p>
+            </div>
+            <p>{rentalPrice}</p>
+          </CardHead>
+          <SList>
+            <li>{city}</li>
+            <li>{country}</li>
+            <li>{rentalCompany}</li>
+            <li>{type}</li>
+            <li>{model}</li>
+            <li>{id}</li>
+            <li>{reduceFunctionalitiesArr(functionalities)}</li>
+          </SList>
+          <button type="button" onClick={() => setIsOpen(true)}>
+            Learn more
+          </button>
+        </DescBox>
+      </CarListItem>
+      {isOpen && <DetailCar data={data} handleClose={handleClose} />}
+    </>
   );
 };
 
