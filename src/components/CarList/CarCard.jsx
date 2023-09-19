@@ -98,7 +98,14 @@ const CarCard = ({ data }) => {
           Learn more
         </button>
       </CarListItem>
-      {isOpen && <DetailCar data={data} handleClose={handleClose} />}
+      {isOpen && (
+        <DetailCar
+          data={data}
+          isFavorite={isFavorite}
+          handleClose={handleClose}
+          handleClick={handleClick}
+        />
+      )}
     </>
   );
 };

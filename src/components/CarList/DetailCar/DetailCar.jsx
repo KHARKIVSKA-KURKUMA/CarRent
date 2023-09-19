@@ -13,11 +13,13 @@ import {
   CardContainer,
   Description,
   RentalButton,
+  UnFav,
+  Fav,
 } from "./DetailCar.styled";
 import { SList } from "../CarList.styled";
 import { useEffect, useRef } from "react";
 
-const DetailCar = ({ data, handleClose }) => {
+const DetailCar = ({ data, handleClose, isFavorite, handleClick }) => {
   const phoneNumber = "+380730000000";
   const containerRef = useRef(null);
   const {
@@ -90,6 +92,11 @@ const DetailCar = ({ data, handleClose }) => {
           <img src={img} alt={make} />
         ) : (
           <img src={photoLink} alt={make} />
+        )}
+        {!isFavorite ? (
+          <UnFav id="unFav" size={30} onClick={handleClick} />
+        ) : (
+          <Fav id="fav" size={30} onClick={handleClick} />
         )}
         <div>
           <CardHead>
@@ -166,5 +173,7 @@ DetailCar.propTypes = {
     mileage: PropTypes.number,
   }).isRequired,
   handleClose: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
 };
 export default DetailCar;

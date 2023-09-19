@@ -1,5 +1,6 @@
 import { MdOutlineCancel } from "react-icons/md";
 import styled from "styled-components";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const ConditionList = styled.ul`
   display: flex;
@@ -15,6 +16,21 @@ const ConditionList = styled.ul`
     background-color: #f9f9f9;
     border-radius: 35px;
   }
+`;
+const UnFav = styled(AiOutlineHeart)`
+  position: absolute;
+  right: 50px;
+  cursor: pointer;
+  top: 45px;
+  transition: fill 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  fill: #0b44cd;
+`;
+const Fav = styled(AiFillHeart)`
+  position: absolute;
+  right: 50px;
+  top: 45px;
+  cursor: pointer;
+  fill: #3470ff;
 `;
 const CategoryTitle = styled.p`
   font-size: 14px;
@@ -95,4 +111,6 @@ export {
   CardContainer,
   Description,
   RentalButton,
+  UnFav,
+  Fav,
 };
