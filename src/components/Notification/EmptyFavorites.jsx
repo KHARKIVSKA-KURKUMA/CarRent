@@ -46,7 +46,7 @@ const EmptyFavorites = () => {
       <Image src={Img} alt="EmptyIcon" />
       <Heading>No Favorites</Heading>
       <Paragraph>
-        You can add an item to your favorites by clicking the Logotype or
+        You can add an item to your favorites by clicking the Catalog or
       </Paragraph>
       <SLink to={"/catalog"}>Go Back</SLink>
     </Container>
