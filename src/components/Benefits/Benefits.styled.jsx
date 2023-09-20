@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { SiLamborghini } from "react-icons/si";
 
 const Container = styled.div`
   display: none;
@@ -9,6 +10,10 @@ const Container = styled.div`
     justify-content: space-between;
     padding-bottom: 60px;
   }
+`;
+const Lamborghini = styled(SiLamborghini)`
+  min-width: 20px;
+  min-height: 20px;
 `;
 const ChosenCarWrap = styled.div`
   background-color: rgba(44, 89, 236, 0.1);
@@ -185,4 +190,5 @@ export {
   CarName,
   PriceBlockWrap,
   Box,
+  Lamborghini,
 };

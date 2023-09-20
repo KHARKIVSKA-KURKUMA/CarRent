@@ -7,8 +7,9 @@ import {
   SLink,
   Box,
   PriceBlockWrap,
+  Lamborghini,
 } from "./Benefits.styled";
-import { SiBugatti, SiLamborghini, SiTesla, SiToyota } from "react-icons/si";
+import { SiBugatti, SiTesla, SiToyota } from "react-icons/si";
 import { BsArrowUpRight } from "react-icons/bs";
 import { useState } from "react";
 import { SelectedCar, SelectedCarHash } from "./cars";
@@ -69,7 +70,7 @@ const Benefits = () => {
               onClick={handleClick}
               className={selectedCarId === "lamborghini" ? "selected" : ""}
             >
-              <SiLamborghini size={20} id="lamborghini" />
+              <Lamborghini size={20} id="lamborghini" />
               Lamborghini Veneno Roadster
             </button>
           </li>
