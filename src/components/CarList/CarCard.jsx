@@ -60,7 +60,16 @@ const CarCard = ({ data }) => {
     const isFavorite = favorite.some((fav) => fav.id === data.id);
     setIsFavorite(isFavorite);
   }, [favorite, data]);
-  const handleClose = () => setIsOpen(false);
+
+  const handleOpen = () => {
+    document.body.style.overflow = "hidden";
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    document.body.style.overflow = "auto";
+    setIsOpen(false);
+  };
+
   return (
     <>
       <CarListItem>
@@ -70,11 +79,11 @@ const CarCard = ({ data }) => {
           <Fav id="fav" size={18} onClick={handleClick} />
         )}
         {img ? (
-          <img onClick={() => setIsOpen(true)} src={img} alt={make} />
+          <img onClick={handleOpen} src={img} alt={make} />
         ) : (
-          <img onClick={() => setIsOpen(true)} src={photoLink} alt={make} />
+          <img onClick={handleOpen} src={photoLink} alt={make} />
         )}
-        <DescBox onClick={() => setIsOpen(true)}>
+        <DescBox onClick={handleOpen}>
           <CardHead>
             <div>
               <p className="make">{make}</p>
@@ -94,7 +103,7 @@ const CarCard = ({ data }) => {
             <li>{reduceFunctionalitiesArr(functionalities)}</li>
           </SList>
         </DescBox>
-        <button type="button" onClick={() => setIsOpen(true)}>
+        <button type="button" onClick={handleOpen}>
           Learn more
         </button>
       </CarListItem>
