@@ -96,48 +96,55 @@ const Filters = () => {
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
-        <FormControl id="brand" component="div" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="brand-helper-label">Car Brand</InputLabel>
-          <Select
-            labelId="brand-helper-label"
-            value={brand}
-            name="brand"
-            label="Car Brand"
-            onChange={(e) => dispatch(setBrand(e.target.value))}
-          >
-            <MenuItem value="">
-              <em>Chose Car Brand</em>
-            </MenuItem>
-            {carBrands.map((carBrand) => (
-              <MenuItem key={carBrand} value={carBrand}>
-                {carBrand}
+        <div className="carsBox">
+          <FormControl id="brand" component="div" sx={{ m: 1, width: 140 }}>
+            <InputLabel id="brand-helper-label">Car Brand</InputLabel>
+            <Select
+              labelId="brand-helper-label"
+              value={brand}
+              name="brand"
+              label="Car Brand"
+              onChange={(e) => dispatch(setBrand(e.target.value))}
+            >
+              <MenuItem value="">
+                <em>Chose Car Brand</em>
               </MenuItem>
-            ))}
-          </Select>
-          <FormHelperText>Chose car brand</FormHelperText>
-        </FormControl>
-        <FormControl component="div" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="price-helper-label">Price/1hour</InputLabel>
-          <Select
-            labelId="price-helper-label"
-            name="price"
-            value={styledPrice}
-            label="Price/1hour"
-            onChange={handleSwitchChange}
-          >
-            <MenuItem selected value="To $">
-              To $
-            </MenuItem>
-            {carPrices.map((price) => (
-              <MenuItem key={price} value={`To $${price}`}>
-                <span className="isHidden">{`To $`}</span>
-                {price}
+              {carBrands.map((carBrand) => (
+                <MenuItem key={carBrand} value={carBrand}>
+                  {carBrand}
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>Chose car brand</FormHelperText>
+          </FormControl>
+          <FormControl component="div" sx={{ m: 1, width: 140 }}>
+            <InputLabel id="price-helper-label">Price/1hour</InputLabel>
+            <Select
+              labelId="price-helper-label"
+              name="price"
+              value={styledPrice}
+              label="Price/1hour"
+              onChange={handleSwitchChange}
+            >
+              <MenuItem selected value="To $">
+                To $
               </MenuItem>
-            ))}
-          </Select>
-          <FormHelperText>Chose price per 1 hour in $</FormHelperText>
-        </FormControl>
-        <BoxS component="div" noValidate autoComplete="off">
+              {carPrices.map((price) => (
+                <MenuItem key={price} value={`To $${price}`}>
+                  <span className="isHidden">{`To $`}</span>
+                  {price}
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>Chose price per 1h</FormHelperText>
+          </FormControl>
+        </div>
+        <BoxS
+          component="div"
+          className="mileageBox"
+          noValidate
+          autoComplete="off"
+        >
           <TextField
             sx={{
               width: 150,
@@ -161,14 +168,22 @@ const Filters = () => {
           />
           <Label>Сar mileage / km</Label>
         </BoxS>
-        <Button type="submit">
-          <FcSearch />
-          Search
-        </Button>
-        <Button type="button" onClick={handleReset}>
-          <Reset />
-          Reset
-        </Button>
+        <ul className="btnWraps">
+          <li>
+            {" "}
+            <Button type="submit">
+              <FcSearch />
+              Search
+            </Button>
+          </li>
+          <li>
+            {" "}
+            <Button type="button" onClick={handleReset}>
+              <Reset />
+              Reset
+            </Button>
+          </li>
+        </ul>
       </Form>
     </Container>
   );

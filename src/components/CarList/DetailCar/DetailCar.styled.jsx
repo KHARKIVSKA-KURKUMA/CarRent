@@ -87,9 +87,12 @@ const CardHead = styled.div`
 `;
 
 const InfoDiv = styled.div`
-  max-height: 240px;
+  max-height: 150px;
   overflow-y: scroll;
   margin-top: 14px;
+  @media screen and (min-width: 1200px) {
+    max-height: 180px;
+  }
 `;
 const RentalButton = styled.a`
   padding: 13px 50px;

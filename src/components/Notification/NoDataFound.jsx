@@ -19,12 +19,20 @@ const Heading = styled.h2`
   font-size: 34px;
   font-weight: 700;
   margin-top: 10px;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    text-align: start;
+  }
 `;
 
 const Paragraph = styled.p`
   font-size: 20px;
   font-family: "Raleway", sans-serif;
   margin-top: 10px;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    text-align: start;
+  }
 `;
 
 const SLink = styled.button`

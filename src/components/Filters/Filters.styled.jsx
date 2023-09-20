@@ -6,6 +6,24 @@ const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  .carsBox {
+    display: flex;
+  }
+  .btnWraps {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+  }
+  @media screen and (min-width: 1200px) {
+    flex-wrap: nowrap;
+    .mileageBox {
+      display: block;
+    }
+    .btnWraps {
+      margin-top: 0px;
+    }
+  }
 `;
 const Container = styled.div`
   padding: 30px 0;
@@ -36,6 +54,7 @@ const Button = styled.button`
   border: none;
   padding: 15px 30px;
   font-size: 18px;
+  width: 140px;
   cursor: pointer;
   margin-right: 10px;
   border-radius: 20px;

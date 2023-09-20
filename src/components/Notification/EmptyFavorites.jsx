@@ -23,6 +23,10 @@ const Paragraph = styled.p`
   font-size: 20px;
   font-family: "Raleway", sans-serif;
   margin-top: 10px;
+  text-align: center;
+  @media screen and (min-width: 1200px) {
+    text-align: start;
+  }
 `;
 
 const SLink = styled(Link)`
