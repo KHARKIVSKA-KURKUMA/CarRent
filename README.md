@@ -6,7 +6,6 @@ Welcome to the **Car Rent**! This platform is designed to help users easily rent
 
 - [Features](#features)
 - [Getting Started](#getting-started)
-- [Contributing](#contributing)
 - [Contact](#contact)
 
 ## Features
@@ -53,10 +52,6 @@ npm run dev
 
 You will be redirected to your website.
 
-### Contributing
-
-We welcome contributions from the community! If you'd like to contribute to the development of this website, please follow our Contribution Guidelines.
-
-### Contact
+## Contact
 
 Thank you for using CarRent. If you have any questions or need assistance, please don't hesitate to contact me. Happy car renting!
