@@ -9,7 +9,7 @@ const Container = styled.div`
   padding: 10px 20px;
   min-height: calc(100vh - 82px);
   @media screen and (min-width: 768px) {
-    padding: 10px 80px;
+    padding: 0px 80px;
   }
 `;
 

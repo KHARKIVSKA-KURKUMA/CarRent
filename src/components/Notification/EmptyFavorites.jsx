@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
-  padding: 20px 30px 50px;
+  padding: 15px 30px;
   flex-direction: column;
   align-items: center;
 `;
