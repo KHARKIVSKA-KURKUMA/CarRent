@@ -6,7 +6,7 @@ const Button = styled.button`
   border: none;
   font-size: 16px;
   cursor: pointer;
-  margin: 60px auto;
+  margin: 60px auto 0px;
   width: 100%;
   text-decoration: underline;
   color: #3470ff;
