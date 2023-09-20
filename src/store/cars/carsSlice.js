@@ -40,6 +40,7 @@ const carsSlice = createSlice({
     },
     resetArr: (state) => {
       state.isFiltered = false;
+      state.filteredCars = [];
     },
     changePage: (state) => {
       state.currentItems += 8;
@@ -48,7 +49,12 @@ const carsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCarsThunk.fulfilled, (state, { payload }) => {
-        state.cars = payload;
+        const sortedCars = [...payload].sort((a, b) => {
+          const priceA = parseFloat(a.rentalPrice.replace("$", ""));
+          const priceB = parseFloat(b.rentalPrice.replace("$", ""));
+          return priceA - priceB;
+        });
+        state.cars = sortedCars;
         state.isLoading = false;
         state.error = "";
       })
