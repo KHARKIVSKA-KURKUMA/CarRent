@@ -2,10 +2,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  display: flex;
-  gap: 50px;
-  justify-content: space-between;
-  padding-bottom: 60px;
+  display: none;
+  @media screen and (min-width: 1200px) {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    padding-bottom: 60px;
+  }
 `;
 const ChosenCarWrap = styled.div`
   background-color: rgba(44, 89, 236, 0.1);
@@ -42,6 +45,12 @@ const CarContainer = styled.div`
   max-width: 500px;
   transform: translateX(-80px);
   ${(props) =>
+    props.id === "toyota" &&
+    `
+    width: 290px;
+ 
+  `}
+  ${(props) =>
     props.id === "bugatti" &&
     `
     width: 330px;
@@ -72,6 +81,7 @@ const StyledUl = styled.ul`
     padding: 15px 30px;
     display: flex;
     font-size: 18px;
+    width: 220px;
     cursor: pointer;
     gap: 10px;
     &.selected {

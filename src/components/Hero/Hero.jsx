@@ -32,12 +32,18 @@ const Hero = () => {
           If you're ready to take your UI Motion Design skills to the next level
           and join a dynamic and growing team
         </Paragraph>
-        <Button to="/catalog">
-          Rent Now <BsArrowUpRight />
-        </Button>
-        <LearnMoreButton onClick={handleClickOpen}>
-          Learn More <BsArrowRight />
-        </LearnMoreButton>
+        <ul className="hero-btn">
+          <li>
+            <Button to="/catalog">
+              Rent Now <BsArrowUpRight />
+            </Button>
+          </li>
+          <li>
+            <LearnMoreButton onClick={handleClickOpen}>
+              Learn More <BsArrowRight />
+            </LearnMoreButton>
+          </li>
+        </ul>
       </TextContainer>
       <ImageWrap>
         <img src={Car} alt="Car" />

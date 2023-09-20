@@ -39,12 +39,12 @@ const Adventure = () => {
       <StyledUl>
         <StyledLi>
           <p>
-            67K <span>User Ratings</span>
+            67K <span>Satisfied User Ratings</span>
           </p>
         </StyledLi>
         <StyledLi>
           <p>
-            100K <span>Successful Vehicles Rented</span>
+            90K <span>Successful Vehicles Rented</span>
           </p>
         </StyledLi>
         <StyledLi>

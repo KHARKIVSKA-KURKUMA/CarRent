@@ -15,10 +15,15 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import ContactForm from "../ContactForm/ContactForm";
 import { StyleSheetManager } from "styled-components";
+import { useMediaQuery } from "@mui/material";
+import { AiOutlineMenu } from "react-icons/ai";
+import HeaderMenu from "./HeaderMenu";
 
 const Header = () => {
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const isMobile = useMediaQuery("(min-width: 768px)");
 
   const handleClose = () => {
     setIsOpen(false);
@@ -28,6 +33,19 @@ const Header = () => {
     setIsOpen(true);
     document.body.style.overflow = "hidden";
   };
+  const handleMenuClose = () => {
+    setMenuIsOpen(false);
+    document.body.style.overflow = "auto";
+    const root = document.getElementById("root");
+    root.style.overflow = "auto";
+  };
+  const handleMenuOpen = () => {
+    setMenuIsOpen(true);
+    document.body.style.overflow = "hidden";
+    const root = document.getElementById("root");
+    root.style.overflow = "hidden";
+  };
+
   return (
     <StyleSheetManager shouldForwardProp={(prop) => !["path"].includes(prop)}>
       <Container path={pathname}>
@@ -42,7 +60,7 @@ const Header = () => {
             <StyledBtn type="button" onClick={handleOpen}>
               Contact Us
             </StyledBtn>
-          ) : (
+          ) : isMobile ? (
             <NavContainer>
               <SNavLink to={"/catalog"}>
                 <Catalog size={24} />
@@ -53,9 +71,14 @@ const Header = () => {
                 Favorite
               </SNavLink>
             </NavContainer>
+          ) : (
+            <>
+              <AiOutlineMenu onClick={handleMenuOpen} size={30} />
+            </>
           )}
         </HeaderContainer>
         {isOpen && <ContactForm handleClose={handleClose} />}
+        {menuIsOpen && <HeaderMenu handleClose={handleMenuClose} />}
       </Container>
     </StyleSheetManager>
   );
