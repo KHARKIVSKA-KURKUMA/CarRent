@@ -1,10 +1,11 @@
 import Layout from "./components/Layout/Layout";
-import HomePage from "./pages/HomePage/HomePage";
-import CatalogPage from "./pages/CatalogPage/CatalogPage";
-import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyles";
+import { lazy } from "react";
+const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage"));
+const FavoritePage = lazy(() => import("./pages/FavoritePage/FavoritePage"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 
 function App() {
   return (
