@@ -65,8 +65,8 @@ const CarListItem = styled.li`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   img {
-    height: 268px;
     border-radius: 12px;
+    height: 200px;
   }
 
   button {

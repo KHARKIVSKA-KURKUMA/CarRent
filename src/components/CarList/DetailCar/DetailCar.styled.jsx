@@ -6,6 +6,7 @@ const ConditionList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   font-size: 14px;
+  padding-bottom: 10px;
   .condition-value {
     color: #3470ff;
     font-weight: 600;
@@ -49,7 +50,6 @@ const Description = styled.p`
 `;
 const CardContainer = styled.div`
   max-width: 540px;
-  height: auto;
   position: relative;
   background-color: white;
   padding: 40px;
@@ -57,7 +57,7 @@ const CardContainer = styled.div`
   img {
     width: 100%;
     border-radius: 16px;
-    max-height: 250px;
+    /* max-height: 250px; */
   }
 `;
 const Container = styled.div`
@@ -74,7 +74,6 @@ const Container = styled.div`
 `;
 const CardHead = styled.div`
   display: flex;
-  margin-top: 14px;
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 10px;
@@ -87,6 +86,11 @@ const CardHead = styled.div`
   }
 `;
 
+const InfoDiv = styled.div`
+  max-height: 240px;
+  overflow-y: scroll;
+  margin-top: 14px;
+`;
 const RentalButton = styled.a`
   padding: 13px 50px;
   color: #fff;
@@ -109,6 +113,7 @@ export {
   CardHead,
   Container,
   CardContainer,
+  InfoDiv,
   Description,
   RentalButton,
   UnFav,

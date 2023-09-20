@@ -15,6 +15,7 @@ import {
   RentalButton,
   UnFav,
   Fav,
+  InfoDiv,
 } from "./DetailCar.styled";
 import { SList } from "../CarList.styled";
 import { useEffect, useRef } from "react";
@@ -41,6 +42,7 @@ const DetailCar = ({ data, handleClose, isFavorite, handleClick }) => {
     mileage,
   } = data;
   /* -------------------------------------------------------------------------- */
+
   useEffect(() => {
     const handleCloseOnBackdropClick = (e) => {
       if (containerRef.current && e.target === containerRef.current) {
@@ -98,7 +100,7 @@ const DetailCar = ({ data, handleClose, isFavorite, handleClick }) => {
         ) : (
           <Fav id="fav" size={30} onClick={handleClick} />
         )}
-        <div>
+        <InfoDiv>
           <CardHead>
             <p className="make">{make}</p>
             <p className="model"> {model && model}</p>
@@ -146,7 +148,7 @@ const DetailCar = ({ data, handleClose, isFavorite, handleClick }) => {
               return <li key={index}>{condition}</li>;
             })}
           </ConditionList>
-        </div>
+        </InfoDiv>
         <RentalButton href={`tel:${phoneNumber}`}>Rental car</RentalButton>
       </CardContainer>
     </Container>
