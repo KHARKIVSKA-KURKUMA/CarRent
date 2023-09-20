@@ -24,6 +24,7 @@ const CatalogPage = () => {
   useEffect(() => {
     dispatch(getCarsThunk());
   }, [dispatch]);
+
   const cars = useSelector(carSelector);
   const filteredArr = useSelector(filteredSelector);
   const isFiltered = useSelector(isFilteredSelector);

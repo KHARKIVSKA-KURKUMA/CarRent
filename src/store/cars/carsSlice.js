@@ -1,12 +1,8 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
-import {
-  handleFulfilled,
-  handlePending,
-  handleRejected,
-} from "./handleFunctions";
+import { handlePending, handleRejected } from "./handleFunctions";
 import { getCarsThunk } from "./carsThunk";
 
 const carsSlice = createSlice({
@@ -45,7 +41,7 @@ const carsSlice = createSlice({
     resetArr: (state) => {
       state.isFiltered = false;
     },
-    changePage: (state, { payload }) => {
+    changePage: (state) => {
       state.currentItems += 8;
     },
   },
@@ -53,11 +49,11 @@ const carsSlice = createSlice({
     builder
       .addCase(getCarsThunk.fulfilled, (state, { payload }) => {
         state.cars = payload;
-        state.currentPage = 1;
+        state.isLoading = false;
+        state.error = "";
       })
-      .addMatcher(isAnyOf(), getCarsThunk.pending, handlePending)
-      .addMatcher(isAnyOf(), getCarsThunk.rejected, handleRejected)
-      .addMatcher(isAnyOf(), getCarsThunk.fulfilled, handleFulfilled);
+      .addCase(getCarsThunk.pending, handlePending)
+      .addCase(getCarsThunk.rejected, handleRejected);
   },
 });
 
