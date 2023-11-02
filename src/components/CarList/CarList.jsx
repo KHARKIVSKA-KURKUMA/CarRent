@@ -11,6 +11,8 @@ import {
 } from "../../store/cars/carSelectors";
 import { changePage } from "../../store/cars/carsSlice";
 
+console.log("try :>> ");
+
 const CarList = ({ cars }) => {
   const { pathname } = useLocation();
   const isFiltered = useSelector(isFilteredSelector);
