@@ -12,8 +12,16 @@ const Container = styled.div`
   @media screen and (min-width: 1200px) {
     padding: 50px 0;
   }
+  @media screen and (min-width: 1400px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
-
+const Wrap = styled.div`
+  @media screen and (min-width: 1400px) {
+    display: flex;
+  }
+`;
 const TextContainer = styled.div`
   flex: 1;
   padding: 30px 0;
@@ -26,6 +34,9 @@ const TextContainer = styled.div`
   }
   @media screen and (min-width: 768px) {
     padding: 20px 20px 20px 0;
+  }
+  @media screen and (min-width: 1400px) {
+    margin-right: 450px;
   }
 `;
 
@@ -131,6 +142,12 @@ const ImageWrap = styled.div`
       max-width: 500px;
     }
   }
+  @media screen and (min-width: 1400px) {
+    transform: translateX(550px);
+    img {
+      max-width: 600px;
+    }
+  }
 `;
 export {
   LearnMoreButton,
@@ -141,4 +158,5 @@ export {
   Container,
   Content,
   TextContainer,
+  Wrap,
 };

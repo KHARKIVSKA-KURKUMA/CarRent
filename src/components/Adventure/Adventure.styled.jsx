@@ -14,7 +14,6 @@ const StyledUl = styled.ul`
   flex-wrap: wrap;
   gap: 50px;
   justify-content: center;
-
   @media screen and (min-width: 1200px) {
     display: flex;
     margin: 40px auto;
@@ -108,6 +107,11 @@ const ContentWrap = styled.div`
       p {
         text-align: start;
       }
+    }
+    @media screen and (min-width: 1400px) {
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
     }
   }
 `;

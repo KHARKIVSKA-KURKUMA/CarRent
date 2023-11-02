@@ -10,6 +10,10 @@ const Container = styled.div`
     justify-content: space-between;
     padding-bottom: 60px;
   }
+  @media screen and (min-width: 1400px) {
+    justify-content: center;
+    gap: 150px;
+  }
 `;
 const Lamborghini = styled(SiLamborghini)`
   min-width: 20px;

@@ -8,6 +8,7 @@ import {
   Container,
   TextContainer,
   Content,
+  Wrap,
 } from "./Hero.styled";
 import Dialog from "@mui/material/Dialog";
 import Car from "../../img/car.png";
@@ -26,28 +27,30 @@ const Hero = () => {
   };
   return (
     <Container>
-      <TextContainer>
-        <Title>Rent Your Dream Car</Title>
-        <Paragraph>
-          If you're ready to take your UI Motion Design skills to the next level
-          and join a dynamic and growing team
-        </Paragraph>
-        <ul className="hero-btn">
-          <li>
-            <Button to="/catalog">
-              Rent Now <BsArrowUpRight />
-            </Button>
-          </li>
-          <li>
-            <LearnMoreButton onClick={handleClickOpen}>
-              Learn More <BsArrowRight />
-            </LearnMoreButton>
-          </li>
-        </ul>
-      </TextContainer>
-      <ImageWrap>
-        <img src={Car} alt="Car" />
-      </ImageWrap>
+      <Wrap>
+        <TextContainer>
+          <Title>Rent Your Dream Car</Title>
+          <Paragraph>
+            If you're ready to take your UI Motion Design skills to the next
+            level and join a dynamic and growing team
+          </Paragraph>
+          <ul className="hero-btn">
+            <li>
+              <Button to="/catalog">
+                Rent Now <BsArrowUpRight />
+              </Button>
+            </li>
+            <li>
+              <LearnMoreButton onClick={handleClickOpen}>
+                Learn More <BsArrowRight />
+              </LearnMoreButton>
+            </li>
+          </ul>
+        </TextContainer>
+        <ImageWrap>
+          <img src={Car} alt="Car" />
+        </ImageWrap>
+      </Wrap>
       <Dialog
         open={open}
         onClose={handleClose}
