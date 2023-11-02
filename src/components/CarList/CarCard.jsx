@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../../store/cars/carsSlice";
 import { favoriteSelector } from "../../store/cars/carSelectors";
 import DetailCar from "./DetailCar/DetailCar";
-
+import Stub from "../../img/no-img.png";
 const CarCard = ({ data }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -69,7 +69,6 @@ const CarCard = ({ data }) => {
     document.body.style.overflow = "auto";
     setIsOpen(false);
   };
-
   return (
     <>
       <CarListItem>
@@ -78,11 +77,16 @@ const CarCard = ({ data }) => {
         ) : (
           <Fav id="fav" size={18} onClick={handleClick} />
         )}
-        {img ? (
-          <img onClick={handleOpen} src={img} alt={make} />
-        ) : (
-          <img onClick={handleOpen} src={photoLink} alt={make} />
-        )}
+        {
+          <img
+            onClick={handleOpen}
+            src={img || photoLink}
+            alt={make}
+            onError={(e) => {
+              e.target.src = Stub;
+            }}
+          />
+        }
         <DescBox onClick={handleOpen}>
           <CardHead>
             <div>

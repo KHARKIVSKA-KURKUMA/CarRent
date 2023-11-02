@@ -19,6 +19,7 @@ import {
 } from "./DetailCar.styled";
 import { SList } from "../CarList.styled";
 import { useEffect, useRef } from "react";
+import Stub from "../../../img/no-img.png";
 
 const DetailCar = ({ data, handleClose, isFavorite, handleClick }) => {
   const phoneNumber = "+380730000000";
@@ -90,11 +91,15 @@ const DetailCar = ({ data, handleClose, isFavorite, handleClick }) => {
     <Container ref={containerRef}>
       <CardContainer>
         <Close size={24} onClick={handleClose} />
-        {img ? (
-          <img src={img} alt={make} />
-        ) : (
-          <img src={photoLink} alt={make} />
-        )}
+        {
+          <img
+            src={img || photoLink}
+            alt={make}
+            onError={(e) => {
+              e.target.src = Stub;
+            }}
+          />
+        }
         {!isFavorite ? (
           <UnFav id="unFav" size={30} onClick={handleClick} />
         ) : (
