@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { GrCatalog } from "react-icons/gr";
 import { MdFavorite } from "react-icons/md";
+import { MdOutlineAccountCircle } from "react-icons/md";
 
 const Container = styled.div`
   background-color: #f2f2f2;
@@ -64,6 +65,7 @@ const NavContainer = styled.div`
   }
 `;
 const SNavLink = styled(NavLink)`
+  display: flex;
   color: #000;
   svg {
     transition: fill 350ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -112,7 +114,10 @@ const Catalog = styled(GrCatalog)`
 `;
 const Favorite = styled(MdFavorite)`
   margin-right: 5px;
-  fill: red;
+  fill: #ec4a4a;
+`;
+const Account = styled(MdOutlineAccountCircle)`
+  margin-right: 5px;
 `;
 export {
   Container,
@@ -125,4 +130,5 @@ export {
   LogoImgContainer,
   NavContainer,
   SNavLink,
+  Account,
 };

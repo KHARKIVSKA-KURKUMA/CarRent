@@ -49,12 +49,13 @@ const carsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCarsThunk.fulfilled, (state, { payload }) => {
-        const sortedCars = [...payload].sort((a, b) => {
-          const priceA = parseFloat(a.rentalPrice.replace("$", ""));
-          const priceB = parseFloat(b.rentalPrice.replace("$", ""));
-          return priceA - priceB;
-        });
-        state.cars = sortedCars;
+        // const sortedCars = [...payload].sort((a, b) => {
+        //   const priceA = parseFloat(a.rentalPrice.replace("$", ""));
+        //   const priceB = parseFloat(b.rentalPrice.replace("$", ""));
+        //   return priceA - priceB;
+        // });
+        // state.cars = sortedCars;
+        state.cars = [...payload];
         state.isLoading = false;
         state.error = "";
       })

@@ -9,6 +9,7 @@ import {
   SNavLink,
   Catalog,
   Favorite,
+  Account,
 } from "./Header.styled";
 import Logotype from "../../img/rent.png";
 import { useLocation } from "react-router-dom";
@@ -63,12 +64,16 @@ const Header = () => {
           ) : isMobile ? (
             <NavContainer>
               <SNavLink to={"/catalog"}>
-                <Catalog size={24} />
+                <Catalog size={26} />
                 Catalog
               </SNavLink>
               <SNavLink to={"/favorite"}>
-                <Favorite size={24} />
+                <Favorite size={28} />
                 Favorite
+              </SNavLink>
+              <SNavLink to={"/login"}>
+                <Account size={28} />
+                Account
               </SNavLink>
             </NavContainer>
           ) : (

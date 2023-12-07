@@ -121,7 +121,7 @@ const DescBox = styled.div`
 const SList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  column-gap: 14px;
+  column-gap: 16px;
   row-gap: 4px;
   color: #12141780;
   margin-bottom: 28px;
