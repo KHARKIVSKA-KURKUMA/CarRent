@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CarForm from "../../components/CarForm/CarForm";
+import SignIn from "../../components/SignIn/SignIn";
 
 const Container = styled.div`
   background-color: #f2f2f2;
@@ -14,9 +15,9 @@ const Container = styled.div`
 
 const LoginPage = () => {
   return (
-    <Container>
-      <CarForm />
-    </Container>
+    <>
+      <SignIn />
+    </>
   );
 };
 
