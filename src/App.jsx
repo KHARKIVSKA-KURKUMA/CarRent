@@ -12,7 +12,7 @@ const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 function App() {
   return (
     <>
-      <ToastContainer autoClose={1500} theme="colored" />
+      <ToastContainer autoClose={2500} theme="colored" />
       <GlobalStyle />
       <BrowserRouter basename={import.meta.env.DEV ? "/" : "/CarRent/"}>
         <Routes>

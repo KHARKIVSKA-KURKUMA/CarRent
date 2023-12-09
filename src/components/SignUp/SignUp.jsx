@@ -12,24 +12,24 @@ import {
   SignInDecr,
 } from "./SignUp.styled";
 import { useState } from "react";
-// import { register } from 'store/auth/authThunks';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
+import { register } from "../../store/auth/authThunks";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   /* -------------------------------------------------------------------------- */
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(
-    //   register({
-    //     name: username,
-    //     email,
-    //     password,
-    //   })
-    // );
+    dispatch(
+      register({
+        name: username,
+        email,
+        password,
+      })
+    );
     setEmail("");
     setPassword("");
     setUsername("");

@@ -12,14 +12,17 @@ import {
   SignUpDecr,
 } from "./SignIn.styled";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../store/auth/authThunks";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   /* -------------------------------------------------------------------------- */
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(logIn({ email, password }));
+    dispatch(logIn({ email, password }));
     setEmail("");
     setPassword("");
   };

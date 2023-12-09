@@ -6,7 +6,7 @@ export const getCarsThunk = createAsyncThunk(
   "cars/fetchAll",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/adverts/rental`);
+      const { data } = await axios.get(`/adverts/catalog`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
