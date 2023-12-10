@@ -1,11 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { fetchCurrentUser, logIn, logOut, register } from "./authThunks";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
-
-export const handleRejected = (state, { payload }) => {
-  state.error = payload;
-};
+import {
+  handleFulfilled,
+  handleLogout,
+  handlePending,
+  handleRejected,
+} from "./authOperation";
 
 const authSlice = createSlice({
   name: "auth",
@@ -18,25 +20,6 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(register.fulfilled, (state, { payload }) => {
-        console.log("payload :>> ", payload);
-        state.user = payload.user;
-        state.token = payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(logIn.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(logOut.fulfilled, (state) => {
-        state.user = {};
-        state.token = null;
-        state.isLoggedIn = false;
-      })
-      .addCase(fetchCurrentUser.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
         state.user = payload;
         state.isLoggedIn = true;
@@ -45,9 +28,12 @@ const authSlice = createSlice({
       .addCase(fetchCurrentUser.rejected, (state) => {
         state.isLoading = false;
       })
+      .addMatcher((action) => action.type.endsWith("/rejected"), handleRejected)
+      .addMatcher(isAnyOf(register.pending, logIn.pending), handlePending)
+      .addMatcher(isAnyOf(register.fulfilled, logIn.fulfilled), handleFulfilled)
       .addMatcher(
-        (action) => action.type.endsWith("/rejected"),
-        handleRejected
+        isAnyOf(logOut.fulfilled, logOut.rejected, logOut.pending),
+        handleLogout
       );
   },
 });
@@ -57,7 +43,7 @@ const authReducer = authSlice.reducer;
 const persistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token", "isLoggedIn"],
+  whitelist: ["token", "isLoggedIn", "user"],
 };
 
 export const persistedAuthReducer = persistReducer(persistConfig, authReducer);

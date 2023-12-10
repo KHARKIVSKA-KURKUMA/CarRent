@@ -48,6 +48,12 @@ const HeaderMenu = ({ handleClose }) => {
               Favorite
             </SNavLink>
           </li>
+          <li>
+            <SNavLink onClick={handleClose} to={"/login"}>
+              <Favorite size={24} />
+              Account
+            </SNavLink>
+          </li>
         </ul>
       </NavContainer>
     </Container>

@@ -8,7 +8,9 @@ import {
   carSelector,
   filteredSelector,
   isFilteredSelector,
+  isLoadingSelector,
 } from "../../store/cars/carSelectors";
+import LoaderForThunk from "../../components/Loader/LoaderForThunk";
 
 const Container = styled.div`
   background-color: #f2f2f2;
@@ -28,9 +30,11 @@ const CatalogPage = () => {
   const cars = useSelector(carSelector);
   const filteredArr = useSelector(filteredSelector);
   const isFiltered = useSelector(isFilteredSelector);
+  const isLoading = useSelector(isLoadingSelector);
   return (
     <Container>
       <Filters />
+      {isLoading && <LoaderForThunk />}
       {isFiltered ? <CarList cars={filteredArr} /> : <CarList cars={cars} />}
     </Container>
   );
