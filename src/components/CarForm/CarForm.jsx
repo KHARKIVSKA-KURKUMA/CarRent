@@ -23,7 +23,6 @@ const CarForm = ({ data, handleClose }) => {
   const isEdited = data !== undefined;
   const currentDate = dayjs();
   const dispatch = useDispatch();
-
   const price = data?.rentalPrice
     ? parseFloat(data.rentalPrice.replace("$", ""))
     : null;
@@ -63,8 +62,30 @@ const CarForm = ({ data, handleClose }) => {
   const [rentalConditions, setRentalConditions] = useState(
     data !== undefined ? minimumAge : ""
   );
+  const [addressError, setAddressError] = useState("");
+  const [rentalConditionsError, setRentalConditionsError] = useState("");
 
-  const handleAddressChange = (e) => {};
+  const handleAddressChange = (e) => {
+    const value = e.target.value;
+    setAddress(value);
+    const regex = /^[\w\s]+,\s[\w\s]+,\s[\w\s]+$/;
+    if (!regex.test(value)) {
+      setAddressError('Invalid format. Please use "street, city, country".');
+    } else {
+      setAddressError("");
+    }
+  };
+
+  const handleRentalConditionsChange = (e) => {
+    const value = e.target.value;
+    setRentalConditions(value);
+    const age = parseInt(value, 10);
+    if (isNaN(age) || age < 18) {
+      setRentalConditionsError("Minimum age must be 18 or older.");
+    } else {
+      setRentalConditionsError("");
+    }
+  };
 
   const isFormValid =
     year !== "" &&
@@ -80,6 +101,8 @@ const CarForm = ({ data, handleClose }) => {
     functionalities !== "" &&
     rentalCompany.trim() !== "" &&
     address.trim() !== "" &&
+    Boolean(addressError) !== true &&
+    Boolean(rentalConditionsError) !== true &&
     mileage !== "" &&
     rentalConditions !== "";
 
@@ -117,7 +140,6 @@ const CarForm = ({ data, handleClose }) => {
     }
     handleClose();
   };
-
   return (
     <Backdrop>
       <StyledFormWrap>
@@ -305,7 +327,9 @@ const CarForm = ({ data, handleClose }) => {
               value={address}
               placeholder="Shevchenko street, Kyiv, Ukraine"
               variant="outlined"
-              onChange={(e) => setAddress(e.target.value)}
+              onChange={handleAddressChange}
+              error={Boolean(addressError)}
+              helperText={addressError}
             />
             <FormHelperText>
               Chose car address ((street, city, country) use a comma)
@@ -321,7 +345,9 @@ const CarForm = ({ data, handleClose }) => {
               value={rentalConditions}
               placeholder="20"
               variant="outlined"
-              onChange={(e) => setRentalConditions(e.target.value)}
+              onChange={handleRentalConditionsChange}
+              error={Boolean(rentalConditionsError)}
+              helperText={rentalConditionsError}
             />
             <FormHelperText>Chose car rental conditions</FormHelperText>
           </FormControl>
