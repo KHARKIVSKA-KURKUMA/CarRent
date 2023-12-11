@@ -19,6 +19,10 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [userNameError, setUserNameError] = useState("");
+  const emailRegExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const dispatch = useDispatch();
   /* -------------------------------------------------------------------------- */
   const handleSubmit = (e) => {
@@ -34,6 +38,41 @@ const SignUp = () => {
     setPassword("");
     setUsername("");
   };
+  const isValid =
+    Boolean(passwordError) !== true &&
+    Boolean(error) !== true &&
+    Boolean(userNameError) !== true &&
+    email !== "" &&
+    password !== "" &&
+    username !== "";
+  /* -------------------------------------------------------------------------- */
+  const handleEmailChange = (e) => {
+    const newEmail = e.currentTarget.value;
+    setEmail(newEmail);
+    if (newEmail === "" || emailRegExp.test(newEmail)) {
+      setError("");
+    } else {
+      setError("Invalid e-mail format");
+    }
+  };
+  const handlePasswordChange = (e) => {
+    const newPassword = e.currentTarget.value;
+    setPassword(newPassword);
+    if (newPassword === "" || newPassword.length >= 6) {
+      setPasswordError("");
+    } else {
+      setPasswordError("Password must be at least 6 characters long");
+    }
+  };
+  const handleUserNameChange = (e) => {
+    const newUserName = e.currentTarget.value;
+    setUsername(newUserName);
+    if (newUserName === "" || newUserName.length >= 3) {
+      setUserNameError("");
+    } else {
+      setUserNameError("Username must be at least 3 characters long");
+    }
+  };
   /* --------------------------------- RENDER --------------------------------- */
   return (
     <Container>
@@ -48,7 +87,9 @@ const SignUp = () => {
               variant="outlined"
               type="text"
               value={username}
-              onChange={(e) => setUsername(e.currentTarget.value)}
+              onChange={handleUserNameChange}
+              error={!!userNameError}
+              helperText={userNameError}
               required
             />
             <TextField
@@ -57,7 +98,9 @@ const SignUp = () => {
               type="email"
               variant="outlined"
               value={email}
-              onChange={(e) => setEmail(e.currentTarget.value)}
+              onChange={handleEmailChange}
+              error={!!error}
+              helperText={error}
               required
             />
             <TextField
@@ -66,11 +109,15 @@ const SignUp = () => {
               variant="outlined"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.currentTarget.value)}
+              onChange={handlePasswordChange}
+              error={!!passwordError}
+              helperText={passwordError}
               required
             />
           </InputWrapper>
-          <SubmitButton type="submit">Sign Up</SubmitButton>
+          <SubmitButton disabled={!isValid} type="submit">
+            Sign Up
+          </SubmitButton>
         </Form>
         <SignInWrap>
           <SignInDecr> Already registered?</SignInDecr>

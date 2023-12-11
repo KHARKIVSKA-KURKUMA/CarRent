@@ -75,6 +75,9 @@ export const SubmitButton = styled.button`
   &:focus {
     background-color: #0b44cd;
   }
+  &:disabled {
+    background-color: #babbbd;
+  }
 `;
 
 export const SignInWrap = styled.div`
