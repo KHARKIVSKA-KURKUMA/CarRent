@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 20px 0;
+  padding: 20px 0 40px;
   display: flex;
   justify-content: center;
   button {
