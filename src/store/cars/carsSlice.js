@@ -1,9 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
-import { handlePending, handleRejected } from "./handleFunctions";
-import { getCarsThunk } from "./carsThunk";
+import {
+  handleFulfilled,
+  handlePending,
+  handleRejected,
+} from "./handleFunctions";
+import {
+  deleteAdvertsThunk,
+  getCarsThunk,
+  getUserAdvertsThunk,
+  postAdvertsThunk,
+  putAdvertsThunk,
+} from "./carsThunk";
 
 const carsSlice = createSlice({
   name: "cars",
@@ -13,7 +23,7 @@ const carsSlice = createSlice({
       state.favoriteCars = [payload, ...state.favoriteCars];
     },
     removeFavorite: (state, { payload }) => {
-      const index = state.favoriteCars.findIndex((car) => car.id === payload);
+      const index = state.favoriteCars.findIndex((car) => car._id === payload);
       state.favoriteCars.splice(index, 1);
     },
     changeFilteredCars: (state, { payload }) => {
@@ -49,6 +59,7 @@ const carsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCarsThunk.fulfilled, (state, { payload }) => {
+        // sort by price
         // const sortedCars = [...payload].sort((a, b) => {
         //   const priceA = parseFloat(a.rentalPrice.replace("$", ""));
         //   const priceB = parseFloat(b.rentalPrice.replace("$", ""));
@@ -59,8 +70,58 @@ const carsSlice = createSlice({
         state.isLoading = false;
         state.error = "";
       })
-      .addCase(getCarsThunk.pending, handlePending)
-      .addCase(getCarsThunk.rejected, handleRejected);
+      .addCase(getUserAdvertsThunk.fulfilled, (state, { payload }) => {
+        state.userAdverts = [...payload];
+      })
+      .addCase(deleteAdvertsThunk.fulfilled, (state, { meta }) => {
+        const index = state.userAdverts.findIndex(
+          (advert) => advert._id === meta.arg
+        );
+        state.userAdverts.splice(index, 1);
+      })
+      .addCase(putAdvertsThunk.fulfilled, (state, { payload }) => {
+        const index = state.userAdverts.findIndex(
+          (advert) => advert._id === payload._id
+        );
+        state.userAdverts.splice(index, 1, payload);
+      })
+      .addCase(postAdvertsThunk.fulfilled, (state, { payload }) => {
+        state.userAdverts.push(payload);
+      })
+      .addCase(getUserAdvertsThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getUserAdvertsThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addMatcher(
+        isAnyOf(
+          getUserAdvertsThunk.fulfilled,
+          postAdvertsThunk.fulfilled,
+          deleteAdvertsThunk.fulfilled,
+          putAdvertsThunk.fulfilled
+        ),
+        handleFulfilled
+      )
+      .addMatcher(
+        isAnyOf(
+          getUserAdvertsThunk.pending,
+          postAdvertsThunk.pending,
+          deleteAdvertsThunk.pending,
+          putAdvertsThunk.pending
+        ),
+        handlePending
+      )
+      .addMatcher(
+        isAnyOf(
+          getUserAdvertsThunk.rejected,
+          postAdvertsThunk.rejected,
+          deleteAdvertsThunk.rejected,
+          putAdvertsThunk.rejected
+        ),
+        handleRejected
+      );
   },
 });
 

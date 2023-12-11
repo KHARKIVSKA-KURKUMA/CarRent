@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { getUserAdvertsThunk } from "../../store/cars/carsThunk";
+import { userAdvertsSelector } from "../../store/cars/carSelectors";
+import CarList from "../../components/CarList/CarList";
 
 const Container = styled.div`
   background-color: #f2f2f2;
@@ -10,7 +15,18 @@ const Container = styled.div`
 `;
 
 const AccountPage = () => {
-  return <Container>Acc</Container>;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserAdvertsThunk());
+  }, [dispatch]);
+  const cars = useSelector(userAdvertsSelector);
+
+  return (
+    <Container>
+      <button>Add Advert</button>
+      <CarList cars={cars} />
+    </Container>
+  );
 };
 
 export default AccountPage;

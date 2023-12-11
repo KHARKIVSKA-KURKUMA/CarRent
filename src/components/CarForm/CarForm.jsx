@@ -1,6 +1,7 @@
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
 import MenuItem from "@mui/material/MenuItem";
 import carBrands from "../../data/brands.json";
 import carTypes from "../../data/types.json";
@@ -16,27 +17,38 @@ import {
 import { useState } from "react";
 import dayjs from "dayjs";
 import { Close, StyledForm, StyledFormWrap, Backdrop } from "./CarForm.styled";
+import { useDispatch } from "react-redux";
+import { postAdvertsThunk, putAdvertsThunk } from "../../store/cars/carsThunk";
 
-const CarForm = () => {
+const CarForm = ({ data, handleClose }) => {
+  const isEdited = data !== undefined;
+  // console.log("isEdited :>> ", isEdited);
   const currentDate = dayjs();
-  const [year, setYear] = useState("");
-  const [make, setMake] = useState("");
-  const [model, setModel] = useState("");
-  const [type, setType] = useState("");
-  const [photo, setPhoto] = useState(
-    "https://thumbs.dreamstime.com/b/%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0-%D0%B1%D1%8B%D1%81%D1%82%D1%80%D0%BE%D0%B9-%D1%81%D0%BA%D0%BE%D1%80%D0%BE%D1%81%D1%82%D0%B8-%D0%BD%D0%B0-%D1%80%D0%B8%D1%81%D1%83%D0%BD%D0%BA%D0%B5-%D1%80%D0%B8%D1%81%D1%83%D0%BD%D0%BE%D0%BA-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0-%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B8-%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D1%83%D1%8E-171520208.jpg"
+  const dispatch = useDispatch();
+  const price = parseFloat(data.rentalPrice.replace("$", ""));
+  const minimumAge = parseInt(
+    data.rentalConditions.match(/Minimum age: (\d+)/)[1],
+    10
   );
-  const [description, setDescription] = useState("");
-  const [fuelConsumption, setFuelConsumption] = useState("");
-  const [engineSize, setEngineSize] = useState("");
-  const [accessories, setAccessories] = useState("");
-  const [functionalities, setFunctionalities] = useState("");
-  const [rentalPrice, setRentalPrice] = useState("");
-  const [rentalCompany, setRentalCompany] = useState("");
-  const [address, setAddress] = useState("");
-  const [mileage, setMileage] = useState("");
-  const [rentalConditions, setRentalConditions] = useState("");
-
+  const [year, setYear] = useState(data.year || "");
+  const [make, setMake] = useState(data.make || "");
+  const [model, setModel] = useState(data.model || "");
+  const [type, setType] = useState(data.type || "");
+  const [photo, setPhoto] = useState(data.img || "");
+  const [description, setDescription] = useState(data.description || "");
+  const [fuelConsumption, setFuelConsumption] = useState(
+    data.fuelConsumption || ""
+  );
+  const [engineSize, setEngineSize] = useState(data.engineSize || "");
+  const [accessories, setAccessories] = useState(data.accessories || "");
+  const [functionalities, setFunctionalities] = useState(
+    data.functionalities || ""
+  );
+  const [rentalPrice, setRentalPrice] = useState(price || "");
+  const [rentalCompany, setRentalCompany] = useState(data.rentalCompany || "");
+  const [address, setAddress] = useState(data.address || "");
+  const [mileage, setMileage] = useState(data.mileage || "");
+  const [rentalConditions, setRentalConditions] = useState(minimumAge || "");
   const isFormValid =
     year !== "" &&
     make.trim() !== "" &&
@@ -45,28 +57,26 @@ const CarForm = () => {
     description.trim() !== "" &&
     fuelConsumption.trim() !== "" &&
     engineSize.trim() !== "" &&
-    accessories.trim() !== "" &&
-    rentalPrice.trim() !== "" &&
-    functionalities.trim() !== "" &&
+    accessories !== "" &&
+    rentalPrice !== "" &&
+    photo.trim() !== "" &&
+    functionalities !== "" &&
     rentalCompany.trim() !== "" &&
     address.trim() !== "" &&
-    mileage.trim() !== "" &&
-    rentalConditions.trim() !== "";
-  // const handlePhotoChange = (e) => {
-  //   const file = e.target.files[0];
-  //   setPhoto(file);
-  // };
-  // console.log("photo :>> ", photo);
+    mileage !== "" &&
+    rentalConditions !== "";
 
   const formatInput = (str) => {
+    if (Array.isArray(str)) {
+      return str;
+    }
     const stringWithoutPeriods = str.replace(/\./g, "");
     const arrayOfElements = stringWithoutPeriods.split(", ");
     return arrayOfElements;
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newCar = {
+    const newAdvert = {
       year,
       make,
       model,
@@ -78,23 +88,31 @@ const CarForm = () => {
       accessories: formatInput(accessories),
       functionalities: formatInput(functionalities),
       rentalPrice: `$${rentalPrice}`,
+      rentalCompany,
       address,
-      rentalConditions: `Minimum age:${rentalConditions}\nValid driver's license\nHigh security deposit required\nProof of insurance required`,
+      rentalConditions: `Minimum age: ${rentalConditions}\nValid driver's license\nHigh security deposit required\nProof of insurance required`,
       mileage,
     };
-    console.log(newCar);
+    if (isEdited) {
+      dispatch(putAdvertsThunk({ id: data._id, newAdvert }));
+    } else {
+      dispatch(postAdvertsThunk(newAdvert));
+    }
+
+    handleClose();
   };
 
   return (
     <Backdrop>
       <StyledFormWrap>
-        <Close size="30" color="#4e4e4e" />
+        <Close size="30" color="#4e4e4e" onClick={handleClose} />
         <StyledForm onSubmit={handleSubmit}>
           <FormControl id="year" component="div" sx={{ m: 1, width: 200 }}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 views={["year"]}
                 label="Issue date"
+                value={dayjs(`${year}-01-01`)}
                 maxDate={currentDate}
                 onChange={(e) => setYear(e.$y)}
               />
@@ -152,25 +170,17 @@ const CarForm = () => {
             </Select>
             <FormHelperText>Add car type</FormHelperText>
           </FormControl>
-          {/* <FormControl id="photo" component="div" sx={{ m: 1, width: 140 }}>
-          <InputLabel id="photo-helper-label">Photo</InputLabel>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handlePhotoChange}
-            style={{ display: "none" }}
-            id="photo-upload"
-          />
-          <label htmlFor="photo-upload">
+          <FormControl id="photo" component="div" sx={{ m: 1, width: 425 }}>
             <TextField
               id="outlined-basic"
+              label="Photo"
+              value={photo}
+              placeholder="https://storage.googleapis.com/pod_public/1300/173320.jpg"
               variant="outlined"
-              value=""
-              disabled
+              onChange={(e) => setPhoto(e.target.value)}
             />
-            <FormHelperText>Upload car photo</FormHelperText>
-          </label>
-        </FormControl> */}
+            <FormHelperText>Add car photo(as a link)</FormHelperText>
+          </FormControl>
           <FormControl
             id="description"
             component="div"
@@ -320,7 +330,7 @@ const CarForm = () => {
             <FormHelperText>Chose car mileage</FormHelperText>
           </FormControl>
           <Button disabled={!isFormValid} type="submit" variant="contained">
-            Add car
+            {isEdited ? <span>Edit Advert</span> : <span>Add Advert</span>}
           </Button>
         </StyledForm>
       </StyledFormWrap>

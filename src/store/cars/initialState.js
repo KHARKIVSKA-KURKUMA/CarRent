@@ -5,5 +5,7 @@ export const initialState = {
   favoriteCars: [],
   filteredCars: [],
   currentItems: 8,
+  userAdverts: [],
   isFiltered: false,
+  accountPending: false,
 };

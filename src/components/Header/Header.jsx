@@ -10,6 +10,7 @@ import {
   Catalog,
   Favorite,
   Account,
+  Logout,
 } from "./Header.styled";
 import Logotype from "../../img/rent.png";
 import { useLocation } from "react-router-dom";
@@ -119,7 +120,10 @@ const Header = () => {
                     }}
                   >
                     <MenuItem>Welcome, {userName}</MenuItem>
-                    <MenuItem onClick={handleClickLogout}>Logout</MenuItem>
+                    <MenuItem onClick={handleClickLogout}>
+                      <Logout size={17} />
+                      Logout
+                    </MenuItem>
                   </Menu>
                 </>
               )}

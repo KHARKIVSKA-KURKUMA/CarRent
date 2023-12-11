@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { GrCatalog } from "react-icons/gr";
 import { MdFavorite } from "react-icons/md";
+import { CiLogout } from "react-icons/ci";
 import { MdOutlineAccountCircle } from "react-icons/md";
 
 const Container = styled.div`
@@ -119,6 +120,9 @@ const Favorite = styled(MdFavorite)`
 const Account = styled(MdOutlineAccountCircle)`
   margin-right: 5px;
 `;
+const Logout = styled(CiLogout)`
+  margin-right: 5px;
+`;
 export {
   Container,
   LogoContainer,
@@ -131,4 +135,5 @@ export {
   NavContainer,
   SNavLink,
   Account,
+  Logout,
 };

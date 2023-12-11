@@ -17,7 +17,6 @@ import Stub from "../../img/no-img.png";
 const CarCard = ({ data }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
   const {
     img,
     type,
@@ -26,7 +25,6 @@ const CarCard = ({ data }) => {
     year,
     rentalPrice,
     rentalCompany,
-    id,
     photoLink,
     functionalities,
     address,
@@ -42,7 +40,7 @@ const CarCard = ({ data }) => {
         dispatch(addFavorite(data));
       } else {
         setIsFavorite(false);
-        dispatch(removeFavorite(data.id));
+        dispatch(removeFavorite(data._id));
       }
     } else {
       if (e.target.id === "unFav") {
@@ -50,14 +48,14 @@ const CarCard = ({ data }) => {
         dispatch(addFavorite(data));
       } else {
         setIsFavorite(false);
-        dispatch(removeFavorite(data.id));
+        dispatch(removeFavorite(data._id));
       }
     }
   };
 
   const favorite = useSelector(favoriteSelector);
   useEffect(() => {
-    const isFavorite = favorite.some((fav) => fav.id === data.id);
+    const isFavorite = favorite.some((fav) => fav._id === data._id);
     setIsFavorite(isFavorite);
   }, [favorite, data]);
 
@@ -103,7 +101,6 @@ const CarCard = ({ data }) => {
             <li>{rentalCompany}</li>
             <li>{type}</li>
             <li>{model}</li>
-            <li>{id}</li>
             <li>{reduceFunctionalitiesArr(functionalities)}</li>
           </SList>
         </DescBox>
@@ -133,7 +130,7 @@ CarCard.propTypes = {
     year: PropTypes.number,
     rentalPrice: PropTypes.string,
     rentalCompany: PropTypes.string,
-    id: PropTypes.number,
+    _id: PropTypes.string,
     functionalities: PropTypes.arrayOf(PropTypes.string),
     address: PropTypes.string,
   }).isRequired,
