@@ -31,7 +31,6 @@ const DetailCar = ({ data, handleClose, isFavorite, handleClick }) => {
     model,
     year,
     rentalPrice,
-    id,
     photoLink,
     rentalConditions,
     functionalities,
@@ -112,13 +111,9 @@ const DetailCar = ({ data, handleClose, isFavorite, handleClick }) => {
             <p>,</p>
             <p className="year">{year}</p>
           </CardHead>
-          <SList style={{ maxWidth: "280px", marginBottom: "14px" }}>
+          <SList style={{ maxWidth: "420px", marginBottom: "14px" }}>
             <li>{city}</li>
             <li>{country}</li>
-            <li>
-              <span>Id:</span>
-              {id}
-            </li>
             <li>
               <span>Year:</span>
               {year}

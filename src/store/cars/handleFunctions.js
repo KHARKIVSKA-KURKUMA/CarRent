@@ -1,8 +1,13 @@
 export const handlePending = (state) => {
-  state.isLoading = true;
+  state.accountPending = true;
 };
 
 export const handleRejected = (state, { payload }) => {
-  state.isLoading = false;
+  state.accountPending = false;
   state.error = payload;
+};
+
+export const handleFulfilled = (state) => {
+  state.accountPending = false;
+  state.error = "";
 };

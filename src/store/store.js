@@ -10,8 +10,10 @@ import {
 } from "redux-persist";
 import { persistedCarReducer } from "./cars/carsSlice";
 import { filterReducer } from "./filter/filterSlice";
+import { persistedAuthReducer } from "./auth/authSlice";
 
 const reducer = {
+  auth: persistedAuthReducer,
   cars: persistedCarReducer,
   filter: filterReducer,
 };

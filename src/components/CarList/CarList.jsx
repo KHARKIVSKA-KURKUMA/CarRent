@@ -10,21 +10,34 @@ import {
   isFilteredSelector,
 } from "../../store/cars/carSelectors";
 import { changePage } from "../../store/cars/carsSlice";
+import UserCarCard from "./UserCarCard/UserCarCard";
+import NoAdvertsFound from "../Notification/NoAdvertsFound";
 
 const CarList = ({ cars }) => {
   const { pathname } = useLocation();
   const isFiltered = useSelector(isFilteredSelector);
   const currentItems = useSelector(currentItemsSelector);
   const dispatch = useDispatch();
+
   return (
     <StyleSheetManager shouldForwardProp={(prop) => !["path"].includes(prop)}>
-      <CardList path={pathname}>
-        {cars.length > 0
-          ? cars
-              .slice(0, currentItems)
-              .map((car) => <CarCard key={car.id} data={car} />)
-          : isFiltered && <NoDataFound />}
-      </CardList>
+      {pathname === "/account" ? (
+        <CardList path={pathname}>
+          {cars.length > 0 ? (
+            cars.map((car) => <UserCarCard key={car._id} data={car} />)
+          ) : (
+            <NoAdvertsFound />
+          )}
+        </CardList>
+      ) : (
+        <CardList path={pathname}>
+          {cars.length > 0
+            ? cars
+                .slice(0, currentItems)
+                .map((car) => <CarCard key={car._id} data={car} />)
+            : isFiltered && <NoDataFound />}
+        </CardList>
+      )}
       {cars.length > currentItems && (
         <Button type="button" onClick={() => dispatch(changePage())}>
           Load more
