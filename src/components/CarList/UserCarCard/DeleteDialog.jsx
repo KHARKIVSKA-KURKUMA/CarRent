@@ -21,17 +21,19 @@ const DeleteDialog = ({ open, onClose, onAgree, id }) => {
           Are you sure you want to delete your advertisement? This action is
           irreversible and will permanently remove your ad from our platform.
           Please consider the following before proceeding:
-          <ol>
-            <li>Once deleted, your ad cannot be recovered.</li>
-            <li>
-              Any ongoing interactions or inquiries related to your ad will be
-              lost.
-            </li>
-            <li>
-              If your ad has a duration or expiration date, deleting it will end
-              the promotion prematurely.
-            </li>
-          </ol>{" "}
+        </DialogContentText>
+        <ol>
+          <li>Once deleted, your ad cannot be recovered.</li>
+          <li>
+            Any ongoing interactions or inquiries related to your ad will be
+            lost.
+          </li>
+          <li>
+            If your ad has a duration or expiration date, deleting it will end
+            the promotion prematurely.
+          </li>
+        </ol>
+        <DialogContentText>
           If you're certain about deleting your ad, click the 'Agree' button
           below. If you have any concerns or would like assistance, feel free to
           contact our support team. Thank you for using our platform.

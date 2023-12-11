@@ -1,7 +1,6 @@
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
 import MenuItem from "@mui/material/MenuItem";
 import carBrands from "../../data/brands.json";
 import carTypes from "../../data/types.json";
@@ -22,33 +21,51 @@ import { postAdvertsThunk, putAdvertsThunk } from "../../store/cars/carsThunk";
 
 const CarForm = ({ data, handleClose }) => {
   const isEdited = data !== undefined;
-  // console.log("isEdited :>> ", isEdited);
   const currentDate = dayjs();
   const dispatch = useDispatch();
-  const price = parseFloat(data.rentalPrice.replace("$", ""));
-  const minimumAge = parseInt(
-    data.rentalConditions.match(/Minimum age: (\d+)/)[1],
-    10
+
+  const price = data?.rentalPrice
+    ? parseFloat(data.rentalPrice.replace("$", ""))
+    : null;
+  const minimumAgeMatch = data?.rentalConditions?.match(/Minimum age: (\d+)/);
+  const minimumAge = minimumAgeMatch ? parseInt(minimumAgeMatch[1], 10) : null;
+
+  const [year, setYear] = useState(data !== undefined ? data.year : "2023");
+  const [make, setMake] = useState(data !== undefined ? data.make : "");
+  const [model, setModel] = useState(data !== undefined ? data.model : "");
+  const [type, setType] = useState(data !== undefined ? data.type : "");
+  const [photo, setPhoto] = useState(data !== undefined ? data.img : "");
+  const [description, setDescription] = useState(
+    data !== undefined ? data.description : ""
   );
-  const [year, setYear] = useState(data.year || "");
-  const [make, setMake] = useState(data.make || "");
-  const [model, setModel] = useState(data.model || "");
-  const [type, setType] = useState(data.type || "");
-  const [photo, setPhoto] = useState(data.img || "");
-  const [description, setDescription] = useState(data.description || "");
   const [fuelConsumption, setFuelConsumption] = useState(
-    data.fuelConsumption || ""
+    data !== undefined ? data.fuelConsumption : ""
   );
-  const [engineSize, setEngineSize] = useState(data.engineSize || "");
-  const [accessories, setAccessories] = useState(data.accessories || "");
+  const [engineSize, setEngineSize] = useState(
+    data !== undefined ? data.engineSize : ""
+  );
+  const [accessories, setAccessories] = useState(
+    data !== undefined ? data.accessories : ""
+  );
   const [functionalities, setFunctionalities] = useState(
-    data.functionalities || ""
+    data !== undefined ? data.functionalities : ""
   );
-  const [rentalPrice, setRentalPrice] = useState(price || "");
-  const [rentalCompany, setRentalCompany] = useState(data.rentalCompany || "");
-  const [address, setAddress] = useState(data.address || "");
-  const [mileage, setMileage] = useState(data.mileage || "");
-  const [rentalConditions, setRentalConditions] = useState(minimumAge || "");
+  const [rentalPrice, setRentalPrice] = useState(price !== null ? price : "");
+  const [rentalCompany, setRentalCompany] = useState(
+    data !== undefined ? data.rentalCompany : ""
+  );
+  const [address, setAddress] = useState(
+    data !== undefined ? data.address : ""
+  );
+  const [mileage, setMileage] = useState(
+    data !== undefined ? data.mileage : ""
+  );
+  const [rentalConditions, setRentalConditions] = useState(
+    data !== undefined ? minimumAge : ""
+  );
+
+  const handleAddressChange = (e) => {};
+
   const isFormValid =
     year !== "" &&
     make.trim() !== "" &&
@@ -98,7 +115,6 @@ const CarForm = ({ data, handleClose }) => {
     } else {
       dispatch(postAdvertsThunk(newAdvert));
     }
-
     handleClose();
   };
 
@@ -141,14 +157,13 @@ const CarForm = ({ data, handleClose }) => {
           </FormControl>
           <FormControl id="model" component="div" sx={{ m: 1, width: 200 }}>
             <TextField
-              id="outlined-basic"
               label="Model"
               value={model}
               placeholder="Supra"
               variant="outlined"
               onChange={(e) => setModel(e.target.value)}
             />
-            <FormHelperText>Chose car model</FormHelperText>
+            <FormHelperText>Add car model</FormHelperText>
           </FormControl>
           <FormControl id="type" component="div" sx={{ m: 1, width: 200 }}>
             <InputLabel id="type-helper-label">Type</InputLabel>
@@ -172,7 +187,6 @@ const CarForm = ({ data, handleClose }) => {
           </FormControl>
           <FormControl id="photo" component="div" sx={{ m: 1, width: 425 }}>
             <TextField
-              id="outlined-basic"
               label="Photo"
               value={photo}
               placeholder="https://storage.googleapis.com/pod_public/1300/173320.jpg"
@@ -187,7 +201,6 @@ const CarForm = ({ data, handleClose }) => {
             sx={{ m: 1, width: 425 }}
           >
             <TextField
-              id="outlined-multiline-static"
               label="Description"
               multiline
               rows={4}
@@ -230,7 +243,6 @@ const CarForm = ({ data, handleClose }) => {
             sx={{ m: 1, width: 425 }}
           >
             <TextField
-              id="outlined-multiline-static"
               label="Accessories"
               multiline
               rows={4}
@@ -248,7 +260,6 @@ const CarForm = ({ data, handleClose }) => {
             sx={{ m: 1, width: 425 }}
           >
             <TextField
-              id="outlined-multiline-static"
               label="Functionalities"
               multiline
               rows={4}
@@ -266,7 +277,6 @@ const CarForm = ({ data, handleClose }) => {
             sx={{ m: 1, width: 200 }}
           >
             <TextField
-              id="outlined-basic"
               label="Rental price"
               value={rentalPrice}
               placeholder="100"
@@ -281,7 +291,6 @@ const CarForm = ({ data, handleClose }) => {
             sx={{ m: 1, width: 200 }}
           >
             <TextField
-              id="outlined-basic"
               label="Rental company"
               value={rentalCompany}
               placeholder="Sports Car Rentals"
@@ -292,7 +301,6 @@ const CarForm = ({ data, handleClose }) => {
           </FormControl>
           <FormControl id="address" component="div" sx={{ m: 1, width: 425 }}>
             <TextField
-              id="outlined-basic"
               label="Address"
               value={address}
               placeholder="Shevchenko street, Kyiv, Ukraine"
@@ -309,7 +317,6 @@ const CarForm = ({ data, handleClose }) => {
             sx={{ m: 1, width: 200 }}
           >
             <TextField
-              id="outlined-basic"
               label="Minimum age"
               value={rentalConditions}
               placeholder="20"
@@ -320,7 +327,6 @@ const CarForm = ({ data, handleClose }) => {
           </FormControl>
           <FormControl id="mileage" component="div" sx={{ m: 1, width: 200 }}>
             <TextField
-              id="outlined-basic"
               label="Mileage"
               value={mileage}
               placeholder="1000"

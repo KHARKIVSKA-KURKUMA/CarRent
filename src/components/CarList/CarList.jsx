@@ -11,6 +11,7 @@ import {
 } from "../../store/cars/carSelectors";
 import { changePage } from "../../store/cars/carsSlice";
 import UserCarCard from "./UserCarCard/UserCarCard";
+import NoAdvertsFound from "../Notification/NoAdvertsFound";
 
 const CarList = ({ cars }) => {
   const { pathname } = useLocation();
@@ -22,9 +23,11 @@ const CarList = ({ cars }) => {
     <StyleSheetManager shouldForwardProp={(prop) => !["path"].includes(prop)}>
       {pathname === "/account" ? (
         <CardList path={pathname}>
-          {cars.length > 0
-            ? cars.map((car) => <UserCarCard key={car._id} data={car} />)
-            : isFiltered && <NoDataFound />}
+          {cars.length > 0 ? (
+            cars.map((car) => <UserCarCard key={car._id} data={car} />)
+          ) : (
+            <NoAdvertsFound />
+          )}
         </CardList>
       ) : (
         <CardList path={pathname}>

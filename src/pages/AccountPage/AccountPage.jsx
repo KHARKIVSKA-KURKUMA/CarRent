@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getUserAdvertsThunk } from "../../store/cars/carsThunk";
 import { userAdvertsSelector } from "../../store/cars/carSelectors";
 import CarList from "../../components/CarList/CarList";
+import AccountTools from "../../components/AccountTools/AccountTools";
+import CarForm from "../../components/CarForm/CarForm";
 
 const Container = styled.div`
   background-color: #f2f2f2;
@@ -15,16 +17,17 @@ const Container = styled.div`
 `;
 
 const AccountPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserAdvertsThunk());
   }, [dispatch]);
   const cars = useSelector(userAdvertsSelector);
-
   return (
     <Container>
-      <button>Add Advert</button>
+      <AccountTools onClick={() => setIsOpen(true)} />
       <CarList cars={cars} />
+      {isOpen && <CarForm handleClose={() => setIsOpen(false)} />}
     </Container>
   );
 };

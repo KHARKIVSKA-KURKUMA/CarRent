@@ -88,11 +88,11 @@ const carsSlice = createSlice({
       .addCase(postAdvertsThunk.fulfilled, (state, { payload }) => {
         state.userAdverts.push(payload);
       })
-      .addCase(getUserAdvertsThunk.rejected, (state, { payload }) => {
+      .addCase(getCarsThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
-      .addCase(getUserAdvertsThunk.pending, (state) => {
+      .addCase(getCarsThunk.pending, (state) => {
         state.isLoading = true;
       })
       .addMatcher(
