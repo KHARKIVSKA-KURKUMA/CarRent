@@ -104,7 +104,8 @@ const CarForm = ({ data, handleClose }) => {
     Boolean(addressError) !== true &&
     Boolean(rentalConditionsError) !== true &&
     mileage !== "" &&
-    rentalConditions !== "";
+    rentalConditions !== "" &&
+    year <= currentDate.$y;
 
   const formatInput = (str) => {
     if (Array.isArray(str)) {
