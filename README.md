@@ -30,7 +30,6 @@ To run this Car Rent Website on your local machine, follow these steps:
 
 ```bash
 git clone https://github.com/KHARKIVSKA-KURKUMA/CarRent.git
-
 ```
 
 ### Install Dependencies
@@ -38,14 +37,12 @@ git clone https://github.com/KHARKIVSKA-KURKUMA/CarRent.git
 ```bash
 cd CarRent
 npm install
-
 ```
 
 ### Run the Application
 
 ```bash
-npm run dev
-
+npm start
 ```
 
 ### Access the Website:
