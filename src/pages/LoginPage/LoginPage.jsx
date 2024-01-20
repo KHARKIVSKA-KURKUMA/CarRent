@@ -5,12 +5,7 @@ import Loader from "../../components/Loader/Loader";
 
 const LoginPage = () => {
   const isLoading = useSelector(isLoadingSelector);
-  return (
-    <>
-      {isLoading && <Loader />}
-      <SignIn />
-    </>
-  );
+  return <>{isLoading ? <Loader /> : <SignIn />}</>;
 };
 
 export default LoginPage;

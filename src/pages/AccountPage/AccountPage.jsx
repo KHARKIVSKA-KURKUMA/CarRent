@@ -10,6 +10,7 @@ import CarList from "../../components/CarList/CarList";
 import AccountTools from "../../components/AccountTools/AccountTools";
 import CarForm from "../../components/CarForm/CarForm";
 import Loader from "../../components/Loader/Loader";
+import { useLocation } from "react-router-dom";
 
 const Container = styled.div`
   background-color: #f2f2f2;
@@ -22,6 +23,7 @@ const Container = styled.div`
 
 const AccountPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserAdvertsThunk());
@@ -31,8 +33,7 @@ const AccountPage = () => {
   return (
     <Container>
       <AccountTools onClick={() => setIsOpen(true)} />
-      {isLoading && <Loader />}
-      <CarList cars={cars} />
+      {isLoading ? <Loader path={pathname} /> : <CarList cars={cars} />}
       {isOpen && <CarForm handleClose={() => setIsOpen(false)} />}
     </Container>
   );

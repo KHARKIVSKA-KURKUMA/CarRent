@@ -5,12 +5,7 @@ import Loader from "../../components/Loader/Loader";
 
 const RegisterPage = () => {
   const isLoading = useSelector(isLoadingSelector);
-  return (
-    <>
-      {isLoading && <Loader />}
-      <SignUp />
-    </>
-  );
+  return <>{isLoading ? <Loader /> : <SignUp />}</>;
 };
 
 export default RegisterPage;
