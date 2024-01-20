@@ -137,6 +137,7 @@ const ImageWrap = styled.div`
   @media screen and (min-width: 1200px) {
     position: absolute;
     display: block;
+    top: 100px;
     transform: translateX(500px);
     img {
       max-width: 500px;
